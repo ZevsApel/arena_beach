@@ -1,0 +1,63 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows", "linux-musl-openssl-3.0.x"]
+  engineType    = "library"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  loginAttempts LoginAttempt[]
+
+  @@index([email]) // Индекс для ускорения поиска по email
+}
+
+model LoginAttempt {
+  id        Int      @id @default(autoincrement())
+  adminId   Int
+  admin     Admin    @relation(fields: [adminId], references: [id])
+  attempts  Int      @default(0)
+  lastAttempt DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([adminId]) // Индекс для ускорения поиска по adminId
+}
+
+model Room {
+  id          Int           @id @default(autoincrement())
+  title       String        // Название
+  slug        String        @unique // Транслитерация названия
+  summary     String?       // Описание для анонса
+  description String?       // Подробное описание
+  features    RoomFeature[] // Отличительные черты
+  images      RoomImage[]   // Фотогалерея
+  price       Float         // Цена за ночь
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model RoomFeature {
+  id     Int    @id @default(autoincrement())
+  icon   String // Имя файла иконки или путь
+  label  String // Текст, например "Кондиционер"
+  room   Room   @relation(fields: [roomId], references: [id])
+  roomId Int
+}
+
+model RoomImage {
+  id     Int    @id @default(autoincrement())
+  path   String // Относительный путь до изображения
+  room   Room   @relation(fields: [roomId], references: [id])
+  roomId Int
+}
