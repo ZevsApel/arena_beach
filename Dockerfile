@@ -7,11 +7,13 @@ WORKDIR /app
 # Копируем package.json и package-lock.json
 COPY package*.json ./
 
-# Устанавливаем зависимости
+# Устанавливаем зависимости (включая @prisma/client)
 RUN npm install
 
-# Копируем схему Prisma и генерируем клиент
+# Копируем Prisma схемы
 COPY prisma ./prisma
+
+# Генерируем Prisma клиент
 RUN npx prisma generate
 
 # Копируем весь проект

@@ -7,6 +7,9 @@ services:
       - .env
     depends_on:
       - db
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
   db:
     image: mysql:8.0
     environment:
