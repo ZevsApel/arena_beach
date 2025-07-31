@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: rgba(223, 236, 240, 1);
+  --title-color: rgba(76, 76, 76, 1);
+  --additional-text-color: rgba(156, 156, 157, 1);
+  --stroke-panel-color: rgba(212, 212, 212, 1);
+  --stroke-panel-color-focus: rgba(74, 144, 170, 1);
+  --regular-border-radius: 6px;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --title-font: 'Unbounded', sans-serif;
+  --regular-font: 'Manrope', sans-serif;
+  --accent-background: rgba(74, 144, 170, 1);
+  --white-text-color: rgba(255, 255, 255, 1);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded/Unbounded-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--title-font);
+}
+
+div, input, button, a, p, span, b, strong {
+  font-family: var(--regular-font);
+}
+
+.title-color {
+  color: var(--title-color)
+}
+
+.additional-text-color {
+  color: var(--additional-text-color);
+}
+
+.main-background {
+  background-color: var(--background);
+}
+
+.authorization-form {
+  gap: 60px;
+  padding: 70px 90px 64px 90px;
+  border-radius: var(--regular-border-radius);
+}
+
+.authorization-form--left,
+.authorization-form--right {
+  flex: 0 0 50%;
+}
+
+.authorization-form--input-panel {
+  color: var(--additional-text-color);
+  border: 1px solid var(--stroke-panel-color);
+  border-radius: var(--regular-border-radius);
+  padding: 12px 25px;
+}
+
+.authorization-form--input-panel:focus,
+.authorization-form--input-panel:active {
+  border-color: var(--stroke-panel-color-focus);
+  color: var(--title-color);
+}
+
+.authorization-form--submit-button {
+  background-color: var(--accent-background);
+  color: var(--white-text-color);
+  padding: 12px 50px;
+  border-radius: var(--regular-border-radius);
+  cursor: pointer;
 }

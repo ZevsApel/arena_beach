@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -40,44 +41,48 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="p-8 bg-white rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-6">Вход в админ-панель</h1>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 p-2 w-full border rounded focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Пароль
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 p-2 w-full border rounded focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Войти
-          </button>
-        </form>
+    <div className="flex min-h-screen items-center justify-center main-background">
+      <div className="flex items-center justify-center bg-white authorization-form">
+        <div className="authorization-form--left">
+            <h1 className="text-6xl font-bold mb-5 uppercase title-color">Вход</h1>
+            <p className='additional-text-color mb-8'>Для входа в систему административной панели отеля Arena Beach введите свои учетные данные.</p>
+            <Image src="/svg/logo/logo.svg" alt="Логотип" />
+        </div>
+        <div className='authorization-form--right'>
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+          <form onSubmit={handleSubmit} className="text-right">
+            <div className='authorization-form--inputs mb-6 space-y-4'>
+              <div>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="authorization-form--input-panel w-full"
+                  required
+                  placeholder='Email'
+                />
+              </div>
+              <div>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="authorization-form--input-panel w-full"
+                  required
+                  placeholder='Пароль'
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="authorization-form--submit-button"
+            >
+              Войти в аккаунт
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
