@@ -12,8 +12,6 @@ export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
 
-    console.log('JWT_SECRET:', process.env.JWT_SECRET); // Отладка
-
     const admin = await prisma.admin.findUnique({ where: { email } });
     if (!admin) {
       return NextResponse.json({ message: 'Неверный email или пароль' }, { status: 401 });
@@ -76,7 +74,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { message: 'Успешный вход' },
+      { message: 'Успешный вход', email: admin.email },
       {
         status: 200,
         headers: { 'Set-Cookie': cookie },

@@ -2,13 +2,16 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useDispatch, UseDispatch } from 'react-redux';
 import Image from 'next/image';
+import { setUserEmail } from '@/lib/redux/slices/emailSLice';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,21 +24,14 @@ export default function AdminLogin() {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      console.log('Response:', res, 'Data:', data);
+      
       if (res.ok) {
-        console.log('Attempting redirect to /admin/dashboard...');
-        if (router) {
-          router.push('/admin/dashboard');
-          console.log('Redirect pushed, current URL:', window.location.href);
-        } else {
-          window.location.href = '/admin/dashboard';
-          console.log('Fallback redirect to:', window.location.href);
-        }
+        dispatch(setUserEmail(data. email));
+        router.push('/admin/dashboard');
       } else {
         setError(data.message || 'Ошибка входа');
       }
     } catch (err) {
-      console.error('Fetch error:', err);
       setError('Произошла ошибка. Попробуйте снова.');
     }
   };
