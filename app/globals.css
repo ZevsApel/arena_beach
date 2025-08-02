@@ -74,9 +74,11 @@ div, input, button, a, p, span, b, strong {
 }
 
 .authorization-form--input-panel:focus,
-.authorization-form--input-panel:active {
+.authorization-form--input-panel:active,
+.authorization-form--input-panel:focus-visible {
   border-color: var(--stroke-panel-color-focus);
   color: var(--title-color);
+  outline: 1px solid var(--stroke-panel-color-focus)
 }
 
 .authorization-form--submit-button {
