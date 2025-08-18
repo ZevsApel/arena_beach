@@ -1,5 +1,6 @@
 'use client';
 
+import MenuContainer, { MenuItemData } from "@/app/components/Dashboard/Menu/MenuContainer";
 import { AppDispatch, RootState, store } from "@/lib/redux/slice";
 import { checkAuth, clearUser, setError } from "@/lib/redux/slices/emailSLice";
 import Image from "next/image";
@@ -31,6 +32,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }
     }
 
+    
+    const menuitems: MenuItemData[] =[
+        { id: 'applications', href: '/', title: 'Заявки', className: ''},
+        { id: 'rooms', href: '/', title: 'Номера', className: ''}
+    ]
+   
+
     return (
         <Provider store={store}>
             <div className="dashboard">
@@ -45,6 +53,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         </div>
                     </div>
                     <button className="authorization-form--submit-button" onClick={handleLogout}>Выйти из аккаунта</button>
+                    <div className="dashboard-sidebar--nav">
+                        <MenuContainer items={menuitems} className="" />
+                        <nav>
+                            <ul>
+                                <li>Заявки</li>
+                                <li>Номера</li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <div className="dashboard-info">
                     {children}
