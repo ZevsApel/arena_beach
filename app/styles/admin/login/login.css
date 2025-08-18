@@ -1,0 +1,45 @@
+.title-color {
+  color: var(--title-color)
+}
+
+.additional-text-color {
+  color: var(--additional-text-color);
+}
+
+.main-background {
+  background-color: var(--background);
+}
+
+.authorization-form {
+  gap: 60px;
+  padding: 70px 90px 64px 90px;
+  border-radius: var(--regular-border-radius);
+}
+
+.authorization-form--left,
+.authorization-form--right {
+  flex: 0 0 50%;
+}
+
+.authorization-form--input-panel {
+  color: var(--additional-text-color);
+  border: 1px solid var(--stroke-panel-color);
+  border-radius: var(--regular-border-radius);
+  padding: 12px 25px;
+}
+
+.authorization-form--input-panel:focus,
+.authorization-form--input-panel:active,
+.authorization-form--input-panel:focus-visible {
+  border-color: var(--stroke-panel-color-focus);
+  color: var(--title-color);
+  outline: 1px solid var(--stroke-panel-color-focus)
+}
+
+.authorization-form--submit-button {
+  background-color: var(--accent-background);
+  color: var(--white-text-color);
+  padding: 12px 50px;
+  border-radius: var(--regular-border-radius);
+  cursor: pointer;
+}
