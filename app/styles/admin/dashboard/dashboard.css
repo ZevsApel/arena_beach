@@ -1,0 +1,33 @@
+.dashboard-sidebar {
+    display: grid;
+    align-items: stretch;
+    grid-template-rows: .08fr 1fr .06fr;
+    gap: 6.7rem;
+    flex: 0 0 20%;
+    padding: 40px 50px 40px 40px;
+    background-color: var(--white-text-color);
+}
+
+.dashboard-sidebar--mainpage {
+    gap: 12px;
+}
+
+.dashboard-mainpage--logo {
+    background-color: var(--background);
+    border-radius: var(--border-radius-12);
+    height: 58px;
+    width: 58px;
+    padding: 20px 8px;
+}
+
+.dashboard-mainpage--title {
+    color: var(--accent-background);
+}
+
+.dashboard-mainpage--user-mail {
+    color: var(--additional-text-color);
+}
+
+.dashboard-info {
+    flex: 0 0 80%;
+}
