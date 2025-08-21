@@ -34,34 +34,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     
     const menuitems: MenuItemData[] =[
-        { id: 'applications', href: '/', title: 'Заявки', className: '', svgIcon: 'applications'},
-        { id: 'rooms', href: '/', title: 'Номера', className: '', svgIcon: 'rooms'}
+        { id: 'applications', href: '/', title: 'Заявки', className: ''},
+        { id: 'rooms', href: '/', title: 'Номера', className: ''}
     ]
    
 
     return (
         <Provider store={store}>
-            <div className="dashboard">
+            <div className="dashboard flex">
                 <div className="dashboard-sidebar">
                     <div className="dashboard-sidebar--mainpage flex items-center justify-center">
                         <div className="dashboard-mainpage--logo">
                             <Image src="/svg/logo/logo.svg" alt="Logo" />
                         </div>
                         <div className="dashboard-mainpage--info">
-                            <h2>Arena B Admin</h2>
-                            <p>{email}</p>
+                            <h2 className="dashboard-mainpage--title">Arena B Admin</h2>
+                            <p className="dashboard-mainpage--user-mail">{email}</p>
                         </div>
                     </div>
-                    <button className="authorization-form--submit-button" onClick={handleLogout}>Выйти из аккаунта</button>
                     <div className="dashboard-sidebar--nav">
                         <MenuContainer items={menuitems} className="" />
-                        <nav>
-                            <ul>
-                                <li>Заявки</li>
-                                <li>Номера</li>
-                            </ul>
-                        </nav>
                     </div>
+                    <button className="authorization-form--submit-button" onClick={handleLogout}>Выйти из аккаунта</button>
                 </div>
                 <div className="dashboard-info">
                     {children}
