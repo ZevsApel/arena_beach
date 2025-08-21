@@ -8,6 +8,15 @@
     background-color: var(--white-text-color);
 }
 
+.dashboard-nav--item {
+    border-radius: var(--regular-border-radius);
+    padding: 16px 20px;
+}
+
+.dashboard-nav--item.active {
+    background-color: var(--background);
+}
+
 .dashboard-sidebar--mainpage {
     gap: 12px;
 }

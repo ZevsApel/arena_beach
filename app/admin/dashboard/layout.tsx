@@ -34,8 +34,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     
     const menuitems: MenuItemData[] =[
-        { id: 'applications', href: '#', title: 'Заявки', className: '',},
-        { id: 'rooms', href: '#', title: 'Номера', className: ''}
+        { id: 'applications', href: '#', title: 'Заявки', className: 'dashboard-nav--item', svgIcon: 'applications'},
+        { id: 'rooms', href: '#', title: 'Номера', className: 'dashboard-nav--item', svgIcon: 'rooms'}
     ]
    
 
