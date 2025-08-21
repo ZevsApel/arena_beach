@@ -10,6 +10,7 @@ export interface MenuItemData {
   href: string;
   title: string;
   className?: string;
+  svgIcon: string;
 }
 
 interface MenuContainerProps {
@@ -36,6 +37,7 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ items, className = '' }) 
               className={item.className}
               isActive={item.id === activeMenuItemId}
               onClick={() => handleItemClick(item.id)}
+              svgIcon={item.svgIcon}
             />
           </li>
         ))}
