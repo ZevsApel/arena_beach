@@ -39,7 +39,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     ]
    
 
-    return (
+    return ( 
         <Provider store={store}>
             <div className="dashboard flex h-full">
                 <div className="dashboard-sidebar">
