@@ -27,10 +27,10 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ items, className = '' }) 
   };
 
   return (
-    <nav className={`flex space-x-4 p-4 ${className}`}>
-      <ul className="flex flex-col space-y-2">
+    <nav className={`${className}`}>
+      <ul className="flex flex-col items-center">
         {items.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className={`dashboard-nav--item-block w-full`}>
             <MenuItem
               href={item.href}
               title={item.title}

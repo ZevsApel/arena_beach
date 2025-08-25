@@ -19,10 +19,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
     return (
         <>
-        <Image src={`/upload/dashboardIcons/menuIcons/${svgIcon}.svg`} alt={title} />
-        <a href={href} onClick={onClick} className={`${className} ${isActive ? 'active' : ''}`}>
-            {title}
-        </a></>
+            <a href={href} onClick={onClick} className={`flex items-center gap-3 w-full ${className} ${isActive ? 'active' : ''}`}>
+                <Image src={`/upload/dashboardIcons/menuIcons/${svgIcon}.svg`} alt={title} />
+                {title}
+            </a>
+        </>
     );
 };
 

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const { email } = useSelector((state: RootState) => state.email);
@@ -34,14 +34,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     
     const menuitems: MenuItemData[] =[
-        { id: 'applications', href: '/', title: 'Заявки', className: ''},
-        { id: 'rooms', href: '/', title: 'Номера', className: ''}
+        { id: 'applications', href: '#', title: 'Заявки', className: 'dashboard-nav--item', svgIcon: 'applications'},
+        { id: 'rooms', href: '/admin/dashboard/rooms/', title: 'Номера', className: 'dashboard-nav--item', svgIcon: 'rooms'}
     ]
    
 
     return (
         <Provider store={store}>
-            <div className="dashboard flex">
+            <div className="dashboard flex h-full">
                 <div className="dashboard-sidebar">
                     <div className="dashboard-sidebar--mainpage flex items-center justify-center">
                         <div className="dashboard-mainpage--logo">
