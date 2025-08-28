@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,14 +20,22 @@ const MenuItem: React.FC<MenuItemProps> = ({
   svgIcon,
   onClick,
 }) => {
-  console.log('MenuItem:', { title, isActive }); // Для отладки
+  const computedClassName = `flex items-center gap-3 w-full ${className} ${isActive ? 'active' : ''}`;
+
   return (
     <Link
       href={href}
-      onClick={onClick}
-      className={`flex items-center gap-3 w-full ${className} ${isActive ? 'active' : ''}`}
+      onClick={(e) => {
+        onClick?.(e);
+      }}
+      className={computedClassName}
     >
-      <Image src={`/upload/dashboardIcons/menuIcons/${svgIcon}.svg`} alt={title} width={12} height={12} />
+      <Image
+        src={`/upload/dashboardIcons/menuIcons/${svgIcon}.svg`}
+        alt={title}
+        width={24}
+        height={24}
+      />
       {title}
     </Link>
   );

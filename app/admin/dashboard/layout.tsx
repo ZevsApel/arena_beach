@@ -35,7 +35,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     
     const menuitems: MenuItemData[] =[
         { id: 'applications', href: '#', title: 'Заявки', className: 'dashboard-nav--item', svgIcon: 'applications'},
-        { id: 'rooms', href: '/admin/dashboard/rooms', title: 'Номера', className: 'dashboard-nav--item', svgIcon: 'rooms'}
+        { id: 'rooms', href: '/admin/dashboard/rooms/', title: 'Номера', className: 'dashboard-nav--item', svgIcon: 'rooms'}
     ]
    
 
