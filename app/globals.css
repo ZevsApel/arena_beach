@@ -4,6 +4,7 @@
 
 :root {
   --background: rgba(223, 236, 240, 1);
+  --background-light: rgba(249, 249, 249, 1);
   --accent-background: rgba(74, 144, 170, 1);
   --title-color: rgba(76, 76, 76, 1);
   --additional-text-color: rgba(156, 156, 157, 1);

@@ -4,6 +4,7 @@ import MenuContainer, { MenuItemData } from "@/app/components/Dashboard/Menu/Men
 import { AppDispatch, RootState, store } from "@/lib/redux/slice";
 import { checkAuth, clearUser, setError } from "@/lib/redux/slices/emailSLice";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -41,11 +42,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     return ( 
         <Provider store={store}>
-            <div className="dashboard flex h-full">
+            <div className="dashboard flex">
                 <div className="dashboard-sidebar">
                     <div className="dashboard-sidebar--mainpage flex items-center justify-center">
                         <div className="dashboard-mainpage--logo">
-                            <Image src="/svg/logo/logo.svg" alt="Logo" />
+                            <Link href="/">
+                                <Image src="/svg/logo/logo.svg" alt="Logo" width={42} height={17} />
+                            </Link>
                         </div>
                         <div className="dashboard-mainpage--info">
                             <h2 className="dashboard-mainpage--title">Arena B Admin</h2>

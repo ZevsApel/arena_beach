@@ -1,3 +1,7 @@
+.dashboard {
+    height: 100vh;
+}
+
 .dashboard-sidebar {
     display: grid;
     align-items: stretch;
@@ -39,4 +43,25 @@
 
 .dashboard-info {
     flex: 0 0 80%;
+    padding: 60px 40px;
+    background-color: var(--background-light);
+}
+
+.dashboard-info--top {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.dashboard-top--title {
+    font-family: var(--title-font);
+    color: var(--accent-background);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 3em;
+}
+
+.dashboard-top--subtitle {
+    max-width: 498px;
+    color: var(--additional-text-color);
 }
