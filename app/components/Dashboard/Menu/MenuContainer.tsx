@@ -45,6 +45,35 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ items, className = '' }) 
     setIsInitialized(true);
   }, [dispatch, items, activeMenuItemId]);
 
+  // Восстановление activeMenuItemId из sessionStorage
+  useEffect(() => {
+    if (typeof window === 'undefined') return; // Пропускаем на сервере
+
+    const savedMenuItemId = sessionStorage.getItem('activeMenuItemId');
+
+    const isValidMenuItem = savedMenuItemId && items.some((item) => item.id === savedMenuItemId);
+
+    if (isValidMenuItem && savedMenuItemId !== activeMenuItemId) {
+
+      // Восстанавливаем из sessionStorage
+      dispatch(setActiveMenuItem(savedMenuItemId));
+      console.log('Restored activeMenuItemId from sessionStorage:', savedMenuItemId);
+      
+    } else if (!isValidMenuItem || !savedMenuItemId) {
+
+      // Если sessionStorage пуст или ID невалиден, устанавливаем первый пункт меню
+      const defaultMenuItem = items[0]?.id || null;
+
+      if (defaultMenuItem && defaultMenuItem !== activeMenuItemId) {
+
+        dispatch(setActiveMenuItem(defaultMenuItem));
+        sessionStorage.setItem('activeMenuItemId', defaultMenuItem || '');
+        console.log('Set activeMenuItemId to default:', defaultMenuItem);
+        
+      }
+    }
+  }, [dispatch, items, activeMenuItemId]);
+
   const handleItemClick = (id: string) => {
     console.log('Clicked menu item:', id);
     dispatch(setActiveMenuItem(id));
