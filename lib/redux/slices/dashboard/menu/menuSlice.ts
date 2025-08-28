@@ -15,7 +15,6 @@ const menuSlice = createSlice({
         setActiveMenuItem(state, action: PayloadAction<string>) {
             state.activeMenuItemId = action.payload;
             typeof window !== 'undefined' && sessionStorage.setItem('activeMenuItemId', action.payload);
-            console.log(state.activeMenuItemId);
         },
     },
 });
