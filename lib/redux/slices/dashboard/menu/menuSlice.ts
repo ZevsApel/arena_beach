@@ -5,7 +5,7 @@ interface MenuState {
 }
 
 const initialState: MenuState = {
-    activeMenuItemId: null
+    activeMenuItemId: typeof window !== 'undefined' ? sessionStorage.getItem('activeMenuItemId') || null : null,
 }
 
 const menuSlice = createSlice({
@@ -14,6 +14,7 @@ const menuSlice = createSlice({
     reducers: {
         setActiveMenuItem(state, action: PayloadAction<string>) {
             state.activeMenuItemId = action.payload;
+            typeof window !== 'undefined' && sessionStorage.setItem('activeMenuItemId', action.payload);
         },
     },
 });
