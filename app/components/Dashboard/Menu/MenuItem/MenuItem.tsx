@@ -33,8 +33,8 @@ const MenuItem: React.FC<MenuItemProps> = ({
       <Image
         src={`/upload/dashboardIcons/menuIcons/${svgIcon}.svg`}
         alt={title}
-        width={24}
-        height={24}
+        width={16}
+        height={16}
       />
       {title}
     </Link>
