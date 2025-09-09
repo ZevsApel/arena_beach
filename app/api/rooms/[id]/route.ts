@@ -17,18 +17,19 @@ export async function PUT (
     req: Request,
     { params }: { params: { id: string } }
 ) {
-    const { title, summary, description, price, features, images} = await req.json();
+    const { title, slug, summary, description, price, features, images} = await req.json();
 
     const updated = await prisma.room.update({
         where: { id: Number(params.id) },
         data: {
             title,
+            slug,
             summary,
             description,
-
+            price,
 
             features: {
-                deletMany: {},
+                deleteMany: {},
                 create: features.map((f: { label: string, icon: string}) => ({
                     label: f.label,
                     icon: f.icon

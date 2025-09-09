@@ -9,11 +9,12 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-    const { title, summary, description, features, images, price} = await req.json();
+    const { title, slug, summary, description, features, images, price} = await req.json();
 
     const room = await prisma.room.create({
         data: {
             title,
+            slug,
             summary,
             description,
             price,
