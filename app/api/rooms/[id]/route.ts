@@ -4,10 +4,12 @@ import prisma from "@/lib/prisma";
 // ================== GET ==================
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const { id } = context.params;
+
   const room = await prisma.room.findUnique({
-    where: { id: Number(params.id) },
+    where: { id: Number(id) },
     include: { features: true, images: true },
   });
 
@@ -21,20 +23,20 @@ export async function GET(
 // ================== PUT ==================
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const { id } = context.params;
   const { title, slug, summary, description, price, features, images } =
     await req.json();
 
   const updated = await prisma.room.update({
-    where: { id: Number(params.id) },
+    where: { id: Number(id) },
     data: {
       title,
       slug,
       summary,
       description,
       price,
-
       features: {
         deleteMany: {},
         create: features.map((f: { label: string; icon: string }) => ({
@@ -42,7 +44,6 @@ export async function PUT(
           icon: f.icon,
         })),
       },
-
       images: {
         deleteMany: {},
         create: images.map((i: { path: string }) => ({
@@ -59,10 +60,12 @@ export async function PUT(
 // ================== DELETE ==================
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
+  const { id } = context.params;
+
   await prisma.room.delete({
-    where: { id: Number(params.id) },
+    where: { id: Number(id) },
   });
 
   return NextResponse.json({ message: "Комната удалена" });
