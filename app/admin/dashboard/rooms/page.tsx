@@ -1,4 +1,5 @@
 'use client'
+import AddRoomForm from "@/app/components/Dashboard/AddRoomForm/AddRoomForm";
 import TitleContainer, {  TitleData } from "@/app/components/Dashboard/TitleContainer/TitleContainer"
 import { useEffect, useState } from "react";
 export default function DashboardRooms() {
@@ -7,12 +8,15 @@ export default function DashboardRooms() {
 
     const [rooms, setRooms] = useState([]);
 
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
+    async function loadRooms() {
+        const res = await fetch('/api/rooms/list');
+        const data = await res.json();
+        setRooms(data); 
+    }
+
     useEffect(() => {
-        async function loadRooms() {
-            const res = await fetch('/api/rooms/list');
-            const data = await res.json();
-            setRooms(data);
-        }
         loadRooms();
     }, [])
 
@@ -20,14 +24,27 @@ export default function DashboardRooms() {
         <>
             <TitleContainer item={titleContainer} />
             <div>
-                {rooms.length === 0 ? (
-                    <p>Номеров пока нет</p>
+                {isFormOpen ? (
+                    <AddRoomForm onRoomAdded={() => {
+                        loadRooms();
+                        setIsFormOpen(false);
+                    } } onCancel={() => setIsFormOpen(false)} />
                 ) : (
-                    <ul>
-                        {rooms.map((room: any) => (
-                            <li key={room.id}>{room.title}</li>
-                        ))}
-                    </ul>
+                    <>
+                        <button onClick={() => setIsFormOpen(true)}>
+                            Добавить номер
+                        </button>
+
+                        {rooms.length === 0 ? (
+                            <p>Номеров пока нет</p>
+                        ) : (
+                            <ul>
+                                {rooms.map((room: any) => (
+                                    <li key={room.id}>{room.title}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </>
                 )}
             </div>
         </>
