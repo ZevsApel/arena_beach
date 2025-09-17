@@ -1,5 +1,6 @@
 'use client';
-import { useState } from "react";
+import React, { useState } from "react";
+import { transliterate } from "@/lib/utils/transliterate";
 
 type AddRoomFormProps = {
     onRoomAdded: () => void;
@@ -36,6 +37,12 @@ export default function AddRoomForm({ onRoomAdded, onCancel }: AddRoomFormProps)
         setImages(copy);
     }
 
+    function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const newTitle = e.target.value;
+        setTitle(newTitle)
+        setSlug(transliterate(newTitle));
+    }
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
@@ -64,8 +71,8 @@ export default function AddRoomForm({ onRoomAdded, onCancel }: AddRoomFormProps)
         <form onSubmit={handleSubmit}>
             <h2>Добавить номер</h2>
 
-            <input type="text" placeholder="Название" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <input type="text" placeholder="Символьный код" value={slug} onChange={(e) => setSlug(e.target.value)} />
+            <input type="text" placeholder="Название" value={title} onChange={handleTitleChange} />
+            <input type="text" placeholder="Символьный код" value={slug} readOnly />
             <textarea placeholder="Краткое описание" value={summary} onChange={(e) => setSummary(e.target.value)} /> 
             <input type="number" placeholder="Цена" value={price} onChange={(e) => setPrice(e.target.value)} />       
             
