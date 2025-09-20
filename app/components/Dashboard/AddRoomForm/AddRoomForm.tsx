@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from "react";
 import { transliterate } from "@/lib/utils/transliterate";
+import FileUpload from "../FIleUpload/FileUpload";
+import Image from "next/image";
 
 type AddRoomFormProps = {
     onRoomAdded: () => void;
@@ -80,8 +82,9 @@ export default function AddRoomForm({ onRoomAdded, onCancel }: AddRoomFormProps)
                 <h3>Особенности</h3>
                 {features.map((feature, index) => (
                     <div key={index}>
-                        <input type="text" placeholder="Иконка" value={feature.icon} onChange={(e) => updateFeature(index, 'icon', e.target.value)} />
                         <input type="text" placeholder="Название" value={feature.label} onChange={(e) => updateFeature(index, 'label', e.target.value)} />
+                        <FileUpload slug={slug} type="icon" accept="image/svg+xml,image/png" onUploaded={(url) => updateFeature(index, 'icon', url)} />
+                        {feature.icon && <Image src={feature.icon} alt='icon preview' width={30} height={30} />}
                     </div>
                 ))}
                 <button type="button" onClick={addFeature}>
@@ -93,7 +96,8 @@ export default function AddRoomForm({ onRoomAdded, onCancel }: AddRoomFormProps)
                 <h3>Фото номера</h3>
                 {images.map((image, index) => (
                     <div key={index}>
-                        <input type="text" placeholder="Путь к фото" value={image.path} onChange={(e) => updateImage(index, e.target.value)} />
+                        <FileUpload slug={slug} type="image" accept="image/jpeg,image/webp" onUploaded={(url) => updateImage(index, url)} />
+                        {image.path && <Image src={image.path} alt="preview" width={80} height={80} />}
                     </div>
                 ))}
                 <button type="button" onClick={addImage}>

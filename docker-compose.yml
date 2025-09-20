@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    volumes:
+      - ./public/upload:/app/public/upload
     ports:
       - '${APP_PORT}:3000'
     env_file:
