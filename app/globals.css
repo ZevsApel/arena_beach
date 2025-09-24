@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import './styles/admin/login/login.css';
+@import './styles/admin/dashboard/dashboard.css';
+
+:root {
+  --background: rgba(223, 236, 240, 1);
+  --background-light: rgba(249, 249, 249, 1);
+  --accent-background: rgba(74, 144, 170, 1);
+  --title-color: rgba(76, 76, 76, 1);
+  --additional-text-color: rgba(156, 156, 157, 1);
+  --stroke-panel-color: rgba(212, 212, 212, 1);
+  --stroke-panel-color-focus: rgba(74, 144, 170, 1);
+  --regular-border-radius: 6px;
+  --border-radius-12: 12px;
+  --foreground: #171717;
+  --title-font: 'Unbounded', sans-serif;
+  --regular-font: 'Manrope', sans-serif;
+  --white-text-color: rgba(255, 255, 255, 1);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/Unbounded/Unbounded-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--title-font);
+}
+
+div, input, button, a, p, span, b, strong {
+  font-family: var(--regular-font);
+}
+

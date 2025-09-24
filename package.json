@@ -1,0 +1,37 @@
+{
+  "name": "arena_beach",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 --port 3000",
+    "build": "NEXT_DISABLE_ESLINT=true next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mattkrick/sanitize-svg": "^0.4.1",
+    "@prisma/client": "^6.12.0",
+    "@reduxjs/toolkit": "^2.8.2",
+    "bcryptjs": "^3.0.2",
+    "cookie": "^1.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^15.4.2-canary.18",
+    "prisma": "^6.12.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-redux": "^9.2.0",
+    "sharp": "^0.34.4",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "globals": "^16.3.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "typescript-eslint": "^8.38.0"
+  }
+}

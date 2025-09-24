@@ -1,0 +1,19 @@
+FROM node:20-bullseye
+
+# Рабочая директория
+WORKDIR /app
+
+# Копируем package.json и package-lock.json
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем весь проект
+COPY . .
+
+# Для корректного отслеживания изменений на Windows
+ENV CHOKIDAR_USEPOLLING=true
+
+# Запуск в dev режиме
+CMD ["npm", "run", "dev"]
