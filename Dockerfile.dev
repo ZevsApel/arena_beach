@@ -12,6 +12,9 @@ RUN npm install
 # Копируем весь проект
 COPY . .
 
+# Гененрируем prisma client
+RUN npx prisma generate
+
 # Для корректного отслеживания изменений на Windows
 ENV CHOKIDAR_USEPOLLING=true
 

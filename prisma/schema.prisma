@@ -10,54 +10,58 @@ datasource db {
 }
 
 model Admin {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  password  String
-  role      String   @default("admin")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  name          String?
+  password      String
+  role          String         @default("admin")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   loginAttempts LoginAttempt[]
 
-  @@index([email]) // Индекс для ускорения поиска по email
+  @@index([email])
 }
 
 model LoginAttempt {
-  id        Int      @id @default(autoincrement())
-  adminId   Int
-  admin     Admin    @relation(fields: [adminId], references: [id])
-  attempts  Int      @default(0)
+  id          Int      @id @default(autoincrement())
+  adminId     Int
+  attempts    Int      @default(0)
   lastAttempt DateTime @default(now())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  admin       Admin    @relation(fields: [adminId], references: [id])
 
-  @@index([adminId]) // Индекс для ускорения поиска по adminId
+  @@index([adminId])
 }
 
 model Room {
   id          Int           @id @default(autoincrement())
-  title       String        // Название
-  slug        String        @unique // Транслитерация названия
-  summary     String?       // Описание для анонса
-  description String?       // Подробное описание
-  features    RoomFeature[] // Отличительные черты
-  images      RoomImage[]   // Фотогалерея
-  price       Float         // Цена за ночь
+  title       String
+  slug        String        @unique
+  summary     String?
+  description String?
+  price       Float
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  features    RoomFeature[]
+  images      RoomImage[]
 }
 
 model RoomFeature {
   id     Int    @id @default(autoincrement())
-  icon   String // Имя файла иконки или путь
-  label  String // Текст, например "Кондиционер"
-  room   Room   @relation(fields: [roomId], references: [id])
+  icon   String
+  label  String
   roomId Int
+  room   Room   @relation(fields: [roomId], references: [id])
+
+  @@index([roomId], map: "RoomFeature_roomId_fkey")
 }
 
 model RoomImage {
   id     Int    @id @default(autoincrement())
-  path   String // Относительный путь до изображения
-  room   Room   @relation(fields: [roomId], references: [id])
+  path   String
   roomId Int
+  room   Room   @relation(fields: [roomId], references: [id])
+
+  @@index([roomId], map: "RoomImage_roomId_fkey")
 }

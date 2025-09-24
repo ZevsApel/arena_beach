@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch, UseDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Image from 'next/image';
 import { setUserEmail } from '@/lib/redux/slices/emailSLice';
 
@@ -13,7 +13,7 @@ export default function AdminLogin() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     try {
@@ -26,13 +26,13 @@ export default function AdminLogin() {
       const data = await res.json();
       
       if (res.ok) {
-        dispatch(setUserEmail(data. email));
+        dispatch(setUserEmail(data.email));
         router.push('/admin/dashboard');
       } else {
         setError(data.message || 'Ошибка входа');
       }
     } catch (err) {
-      setError('Произошла ошибка. Попробуйте снова.');
+      setError(`Произошла ошибка Попробуйте снова. ${err}`);
     }
   };
 
@@ -42,7 +42,7 @@ export default function AdminLogin() {
         <div className="authorization-form--left">
             <h1 className="text-6xl font-bold mb-5 uppercase title-color">Вход</h1>
             <p className='additional-text-color mb-8'>Для входа в систему административной панели отеля Arena Beach введите свои учетные данные.</p>
-            <Image src="/svg/logo/logo.svg" alt="Логотип" />
+            <Image src="/svg/logo/logo.svg" alt="Логотип" width={120} height ={50} />
         </div>
         <div className='authorization-form--right'>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
