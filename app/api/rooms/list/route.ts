@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { features } from "process";
 
 export async function GET(request: Request) {
     try {
@@ -47,5 +46,22 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: 'Номер успешно добавлен' });
     } catch (e) {
         return NextResponse.json({ error: `Произошла ошибка: ${e}`}, { status: 500 })
+    }
+}
+
+
+export async function DELETE(request: Request) {
+    try {
+        const { id } = await request.json();
+
+        const deleteRoom = await prisma.room.delete({
+            where: {
+                id: id
+            }
+        });
+
+        return NextResponse.json({ message: 'Номер успешно удален' });
+    } catch(e) {
+        return NextResponse.json({ error: `Произошла ошибка ${e}` }, { status: 500 });
     }
 }
