@@ -52,7 +52,7 @@ model RoomFeature {
   icon   String
   label  String
   roomId Int
-  room   Room   @relation(fields: [roomId], references: [id])
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
   @@index([roomId], map: "RoomFeature_roomId_fkey")
 }
@@ -61,7 +61,7 @@ model RoomImage {
   id     Int    @id @default(autoincrement())
   path   String
   roomId Int
-  room   Room   @relation(fields: [roomId], references: [id])
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
   @@index([roomId], map: "RoomImage_roomId_fkey")
 }

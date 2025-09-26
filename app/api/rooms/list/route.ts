@@ -54,6 +54,10 @@ export async function DELETE(request: Request) {
     try {
         const { id } = await request.json();
 
+        if (!id) {
+            return NextResponse.json({ error: 'ID обязателен' }, { status: 400 });
+        }
+
         const deleteRoom = await prisma.room.delete({
             where: {
                 id: id

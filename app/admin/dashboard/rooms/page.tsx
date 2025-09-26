@@ -16,6 +16,29 @@ export default function DashboardRooms() {
         setRooms(data); 
     }
 
+    async function deleteRoom(id: number) {
+        try {
+            const res = await fetch('/api/rooms/list', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id }),
+            });
+
+            const data = await res.json();
+
+            console.log(data);
+
+            if(!res.ok) {
+                console.error(`Ошибка при удалении ${data.error}`);
+                return;
+            }
+
+            loadRooms();
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         loadRooms();
     }, [])
@@ -40,7 +63,7 @@ export default function DashboardRooms() {
                         ) : (
                             <ul>
                                 {rooms.map((room: any) => (
-                                    <li key={room.id}>{room.title}</li>
+                                    <li key={room.id}>{room.title} <button onClick={() => deleteRoom(room.id)}>Удалить</button></li>
                                 ))}
                             </ul>
                         )}
