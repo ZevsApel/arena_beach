@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import fs from "fs";
+import path from "path";
 
 export async function GET(request: Request) {
     try {
@@ -57,11 +59,28 @@ export async function DELETE(request: Request) {
         if (!id) {
             return NextResponse.json({ error: 'ID обязателен' }, { status: 400 });
         }
+        
+
+        const deleteFiles = await prisma.room.findUnique({
+            where: { id: id },
+            select: { slug: true}
+        });
+
+        if (!deleteFiles) {
+            return NextResponse.json({ error: 'Комната не найдена' }, { status: 404 });
+        }
+
+        console.log(deleteFiles.slug);
+          
+
+        const deletePath = path.join(process.cwd(), 'public', 'upload', 'rooms', deleteFiles.slug);
+
+        if(fs.existsSync(deletePath)) {
+            fs.rmSync(deletePath, { recursive: true, force: true });
+        }
 
         const deleteRoom = await prisma.room.delete({
-            where: {
-                id: id
-            }
+            where: { id: id }
         });
 
         return NextResponse.json({ message: 'Номер успешно удален' });
