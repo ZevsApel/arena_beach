@@ -12,7 +12,7 @@
   --stroke-panel-color-focus: rgba(74, 144, 170, 1);
   --regular-border-radius: 6px;
   --border-radius-12: 12px;
-  --foreground: #171717;
+  --foreground: rgba(23, 23, 23, 1);
   --title-font: 'Unbounded', sans-serif;
   --regular-font: 'Manrope', sans-serif;
   --white-text-color: rgba(255, 255, 255, 1);
