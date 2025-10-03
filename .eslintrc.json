@@ -1,0 +1,35 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaFeatures": { "jsx": true }, // Поддержка JSX
+      "ecmaVersion": "latest", // Поддержка ES2022+
+      "sourceType": "module" // Поддержка ES-модули
+    },
+    "plugins": ["@typescript-eslint"],
+    "rules": {
+        // Помогает избегать создания нестабильных вложенных компонентов
+        "react/no-unstable-nested-components": "warn",
+      
+        // Разрешает JSX только в .tsx файлах
+        "react/jsx-filename-extension": [
+          2,
+          {
+            "extensions": [".tsx"]
+          }
+        ],
+      
+        // Помогает находить неиспользуемые переменные 
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          // Игнорирует параметры, начинающиеся с _
+          {
+            "destructuredArrayIgnorePattern": "^_",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+      
+        // Требует использование import type для импортов типов
+        "@typescript-eslint/consistent-type-imports": "error"
+      }
+  }
