@@ -1,0 +1,11 @@
+.dashboard {
+    height: 100vh;
+}
+
+.dashboard-block__sidebar {
+    display: grid;
+    align-items: stretch;
+    grid-template-rows: .8fr 1fr .6fr;
+    gap: 6.7rem;
+    flex: 0 0 20%;
+}

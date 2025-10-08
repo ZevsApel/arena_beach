@@ -1,3 +1,127 @@
-.title-color {
-  color: var(--text-dark)
+.auth {
+  display: grid;
+  place-items: center;
+
+  height: 100vh;
+
+  background-color: var(--main-bubbles);
+}
+
+.auth-form {
+  display: flex;
+  place-items: center;
+  gap: round(3.7rem, 10px);
+
+  background-color: var(--main-white);
+
+  border-radius: var(--regular-border-radius);
+
+  padding: round(4.4rem, 10px) round(5.7rem, 10px);
+}
+
+.auth-form__left,
+.auth-form__right {
+  flex: 0 0 47.1%;
+}
+
+
+.auth-form__title {
+  font-size: var(--title-fsz-large);
+  font-weight: 600;
+  color: var(--text-dark);
+
+  margin-bottom: 1.25rem;
+}
+
+.auth-form__additional-text {
+  color: var(--text-faceless);
+
+  margin-bottom: round(2.62rem, 2px);
+}
+
+
+.auth-form__container {
+  text-align: right;
+}
+
+.auth-form__items {
+  display: grid;
+  gap: 1.2rem;
+
+  margin-bottom: round(1.2rem, 10px);
+}
+
+
+.auth-form__item {
+  position: relative;
+}
+
+.auth-form__item:before {
+  content: '';
+
+  position: absolute;
+  top: -13px;
+  left: 1.8rem;
+  z-index: 1;
+
+  padding: 0 2px;
+
+  background-color: var(--main-white);
+
+  color: var(--text-accent);
+
+  display: block;
+
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+.auth-form__item:focus-within:before {
+  opacity: 1;
+}
+
+.auth-form__item--email:before {
+  content: 'E-mail';
+}
+
+.auth-form__item--password:before {
+  content: 'Пароль';
+}
+
+.auth-form__input {
+  width: 100%;
+
+  outline: 1px solid var(--text-faceless);
+  border-radius: var(--regular-border-radius);
+
+  color: var(--text-faceless);
+
+  padding: .7rem round(1.9rem, 10px);
+}
+
+
+.auth-form__input:hover {
+  outline: 1px solid var(--main-secondary);
+}
+
+.auth-form__input:focus-within {
+  outline: 1px solid var(--main-accent);
+}
+
+.auth-form__submit {
+  background-color: var(--main-custom);
+  
+  border-radius: var(--regular-border-radius);
+
+  color: var(--text-white);
+
+  width: fit-content;
+
+  padding: round(.8rem, 2px) round(3.6rem, 2px);
+
+  cursor: pointer;
+}
+
+.auth-form__submit:hover {
+  background-color: var(--main-secondary);
 }
