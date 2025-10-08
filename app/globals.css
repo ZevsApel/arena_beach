@@ -44,6 +44,8 @@
   --text-fsz-large: 1.25;
   --text-fsz-medium: 1rem;
   --text-fsz-little: .875rem;
+
+  --regular-border-radius: .375rem;
 }
 
 body {
