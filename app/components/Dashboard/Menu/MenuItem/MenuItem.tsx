@@ -20,7 +20,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   svgIcon,
   onClick,
 }) => {
-  const computedClassName = `flex items-center gap-3 w-full ${className} ${isActive ? 'active' : ''}`;
+  const computedClassName = `dashboard-nav__link ${isActive ? 'active' : ''}`;
 
   return (
     <Link
@@ -35,6 +35,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
         alt={title}
         width={16}
         height={16}
+        className='dashboard-link__img'
       />
       {title}
     </Link>

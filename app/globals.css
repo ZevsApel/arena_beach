@@ -3,24 +3,54 @@
 @import './styles/admin/dashboard/dashboard.css';
 
 :root {
-  --background: rgba(223, 236, 240, 1);
-  --background-light: rgba(249, 249, 249, 1);
-  --accent-background: rgba(74, 144, 170, 1);
-  --title-color: rgba(76, 76, 76, 1);
-  --additional-text-color: rgba(156, 156, 157, 1);
-  --stroke-panel-color: rgba(212, 212, 212, 1);
-  --stroke-panel-color-focus: rgba(74, 144, 170, 1);
-  --regular-border-radius: 6px;
-  --border-radius-12: 12px;
-  --foreground: rgba(23, 23, 23, 1);
+  --main-white: rgba(253, 255, 255, 1);
+  --main-admin: rgba(249, 249, 249, 1);
+  --main-bubbles: rgba(229, 246, 248, 1);
+  --main-secondary: rgba(136, 218, 239, 1);
+  --main-accent: rgba(74, 144, 170, 1);
+  --main-custom: rgba(38, 107, 132, 1);
+  --main-dark: rgba(76, 76, 76, 1);
+
+  --text-white: rgba(253, 255, 255, 1);
+  --text-secondary: rgba(136, 218, 239, 1);
+  --text-accent: rgba(74, 144, 170, 1);
+  --text-custom: rgba(38, 107, 132, 1);
+  --text-dark: rgba(76, 76, 76, 1);
+  --text-faceless: rgba(156, 156, 157, 1);
+  --text-unnoticed: rgba(212, 212, 212, 1);
+  
+
+  --map-beach: rgba(255, 251, 232, 1);
+
+  --map-zone-afk: rgba(242, 242, 242, 1);
+  --map-priority-afk: rgba(186, 226, 240, 1);
+  --map-small-priority-afk: rgba(229, 246, 248, 1);
+
+  --map-zone-on: rgba(217, 217, 217, 1);
+  --map-priority-on: rgba(136, 218, 239, 1);
+  --map-small-priority-on: rgba(184, 241, 255, 1);
+
+
+  
   --title-font: 'Unbounded', sans-serif;
   --regular-font: 'Manrope', sans-serif;
-  --white-text-color: rgba(255, 255, 255, 1);
+
+  --title-fsz-large: 3rem;
+  --title-fsz-medium: 1.5rem; 
+  --title-fsz-little: 1rem;
+
+  --heading-fsz-large: 1.5rem;
+  --heading-fsz-medium: 1.25rem;
+
+  --text-fsz-large: 1.25;
+  --text-fsz-medium: 1rem;
+  --text-fsz-little: .875rem;
+
+  --regular-border-radius: .375rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--main-white);
 }
 
 @font-face {

@@ -37,35 +37,35 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center main-background">
-      <div className="flex items-center justify-center bg-white authorization-form">
-        <div className="authorization-form--left">
-            <h1 className="text-6xl font-bold mb-5 uppercase title-color">Вход</h1>
-            <p className='additional-text-color mb-8'>Для входа в систему административной панели отеля Arena Beach введите свои учетные данные.</p>
+    <div className="auth">
+      <div className="auth-form">
+        <div className="auth-form__left">
+            <h1 className="auth-form__title">Вход</h1>
+            <p className='auth-form__additional-text'>Для входа в систему административной панели отеля Arena&nbsp;Beach введите свои учетные данные.</p>
             <Image src="/svg/logo/logo.svg" alt="Логотип" width={120} height ={50} />
         </div>
-        <div className='authorization-form--right'>
-          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-          <form onSubmit={handleSubmit} className="text-right">
-            <div className='authorization-form--inputs mb-6 space-y-4'>
-              <div>
+        <div className='auth-form__right'>
+          {error && <p className="auth-form__error">{error}</p>}
+          <form onSubmit={handleSubmit} className="auth-form__container">
+            <div className='auth-form__items'>
+              <div className='auth-form__item auth-form__item--email'>
                 <input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="authorization-form--input-panel w-full"
+                  className="auth-form__input"
                   required
                   placeholder='Email'
                 />
               </div>
-              <div>
+              <div className='auth-form__item auth-form__item--password'>
                 <input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="authorization-form--input-panel w-full"
+                  className="auth-form__input"
                   required
                   placeholder='Пароль'
                 />
@@ -73,7 +73,7 @@ export default function AdminLogin() {
             </div>
             <button
               type="submit"
-              className="authorization-form--submit-button"
+              className="auth-form__submit"
             >
               Войти в аккаунт
             </button>

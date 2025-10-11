@@ -35,32 +35,34 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     
     const menuitems: MenuItemData[] =[
-        { id: 'applications', href: '#', title: 'Заявки', className: 'dashboard-nav--item', svgIcon: 'applications'},
-        { id: 'rooms', href: '/admin/dashboard/rooms/', title: 'Номера', className: 'dashboard-nav--item', svgIcon: 'rooms'}
+        { id: 'applications', href: '#', title: 'Заявки', svgIcon: 'applications'},
+        { id: 'rooms', href: '/admin/dashboard/rooms/', title: 'Номера', svgIcon: 'rooms'}
     ]
    
 
     return ( 
         <Provider store={store}>
-            <div className="dashboard flex">
-                <div className="dashboard-sidebar">
-                    <div className="dashboard-sidebar--mainpage flex items-center justify-center">
+            <div className="dashboard">
+                <div className="dashboard-block__sidebar">
+                    <div className="dashboard-block__mainpage">
                         <div className="dashboard-mainpage--logo">
                             <Link href="/">
                                 <Image src="/svg/logo/logo.svg" alt="Logo" width={42} height={17} />
                             </Link>
                         </div>
-                        <div className="dashboard-mainpage--info">
-                            <h2 className="dashboard-mainpage--title">Arena B Admin</h2>
-                            <p className="dashboard-mainpage--user-mail">{email}</p>
+                        <div className="dashboard-mainpage__info">
+                            <h2 className="dashboard-mainpage__title">Arena B Admin</h2>
+                            <p className="dashboard-mainpage__user-mail">{email}</p>
                         </div>
                     </div>
-                    <div className="dashboard-sidebar--nav">
+                    <div className="dashboard-sidebar__nav">
                         <MenuContainer items={menuitems} className="" />
                     </div>
-                    <button className="authorization-form--submit-button" onClick={handleLogout}>Выйти из аккаунта</button>
+                    <div className="auth-form__submit-block">
+                        <button className="auth-form__submit" onClick={handleLogout}>Выйти из аккаунта</button>
+                    </div>
                 </div>
-                <div className="dashboard-info">
+                <div className="dashboard-section">
                     {children}
                 </div>
             </div>
