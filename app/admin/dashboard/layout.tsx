@@ -35,8 +35,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     
     const menuitems: MenuItemData[] =[
-        { id: 'applications', href: '#', title: 'Заявки', className: 'dashboard-nav--item', svgIcon: 'applications'},
-        { id: 'rooms', href: '/admin/dashboard/rooms/', title: 'Номера', className: 'dashboard-nav--item', svgIcon: 'rooms'}
+        { id: 'applications', href: '#', title: 'Заявки', svgIcon: 'applications'},
+        { id: 'rooms', href: '/admin/dashboard/rooms/', title: 'Номера', svgIcon: 'rooms'}
     ]
    
 
@@ -58,9 +58,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <div className="dashboard-sidebar__nav">
                         <MenuContainer items={menuitems} className="" />
                     </div>
-                    <button className="auth-form__submit" onClick={handleLogout}>Выйти из аккаунта</button>
+                    <div className="auth-form__submit-block">
+                        <button className="auth-form__submit" onClick={handleLogout}>Выйти из аккаунта</button>
+                    </div>
                 </div>
-                <div className="dashboard-info">
+                <div className="dashboard-section">
                     {children}
                 </div>
             </div>

@@ -84,16 +84,15 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ items, className = '' }) 
   }
 
   return (
-    <nav className={`${className}`}>
-      <ul className="flex flex-col items-center">
+    <nav className='dashboard-sidebar__nav'>
+      <ul className="dashboard-nav__list">
         {items.map((item) => {
           const isItemActive = item.id === activeMenuItemId;
           return (
-            <li key={item.id} className="dashboard-nav--item-block w-full">
+            <li key={item.id} className="dashboard-nav__item">
               <MenuItem
                 href={item.href}
                 title={item.title}
-                className={item.className}
                 isActive={isItemActive}
                 onClick={() => handleItemClick(item.id)}
                 svgIcon={item.svgIcon}
