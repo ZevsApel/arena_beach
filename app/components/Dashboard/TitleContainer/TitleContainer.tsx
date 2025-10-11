@@ -12,7 +12,7 @@ interface TitleContainerProps {
 
 const TitleContainer: React.FC<TitleContainerProps> = ({ item }) => {
     return (
-        <div className="dashboard-info--top">
+        <div className="dashboard-section__top">
             <Title title={item.title} />
             <SubTitle subTitleText={item.subTitleText}/>
         </div>

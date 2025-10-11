@@ -4,6 +4,7 @@
 
 :root {
   --main-white: rgba(253, 255, 255, 1);
+  --main-admin: rgba(249, 249, 249, 1);
   --main-bubbles: rgba(229, 246, 248, 1);
   --main-secondary: rgba(136, 218, 239, 1);
   --main-accent: rgba(74, 144, 170, 1);

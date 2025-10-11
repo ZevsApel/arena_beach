@@ -4,7 +4,7 @@ interface SubTitleProps {
 
 const SubTitle: React.FC<SubTitleProps> = ({ subTitleText }) => {
     return (
-        <p className="dashboard-top--subtitle">{subTitleText}</p>
+        <p className="dashboard-top__text">{subTitleText}</p>
     )
 }
 

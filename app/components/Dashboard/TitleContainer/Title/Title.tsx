@@ -5,7 +5,7 @@ interface TitleProps {
 
 const Title: React.FC<TitleProps> = ({ title }) => {
     return (
-        <h2 className="dashboard-top--title">{title}</h2>
+        <h2 className="dashboard-top__title">{title}</h2>
     )
 }
 
