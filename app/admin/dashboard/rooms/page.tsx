@@ -1,59 +1,73 @@
-'use client'
-import AddRoomForm from "@/app/components/Dashboard/AddRoomForm/AddRoomForm";
-import SureModal from "@/app/components/Dashboard/SureModal/SureModal";
-import TitleContainer, { TitleData } from "@/app/components/Dashboard/TitleContainer/TitleContainer"
-import { AppDispatch, RootState } from "@/lib/redux/slice";
-import { closeModal, openModal } from "@/lib/redux/slices/modal/modalSlice";
-import { useRouter } from "next/router";
+'use client';
+
 import { useEffect, useState } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, UseDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+
+import SureModal from "@/app/components/Dashboard/SureModal/SureModal";
+import TitleContainer, { TitleData } from "@/app/components/Dashboard/TitleContainer/TitleContainer";
 
 
-
+import { AppDispatch, RootState } from "@/lib/redux/slice";
+import { openModal, closeModal } from "@/lib/redux/slices/modal/modalSlice";
+import { title } from "process";
 
 export default function DashboardRooms() {
-
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const { isModalOpen } = useSelector((state: RootState) => state.modal);
 
-    const titleContainer: TitleData = { title: 'Список номеров', subTitleText: 'В этом разделе вы можете ознакомиться с заявками с сайта и найти контактные данные заявителя' }
-
-    const [rooms, setRooms] = useState([]);
-
-    const [isFormOpen, setIsFormOpen] = useState(false);
-
-
+    const [rooms, setRooms] = useState<any[]>([]);
     const [roomToDelete, setRoomToDelete] = useState<number | null>(null);
 
-    async function loadRooms() {
-        const res = await fetch('/api/rooms/list');
-        const data = await res.json();
-        setRooms(data);
+    const titleContainer: TitleData = {
+        title: 'Список номеров',
+        subTitleText: 'В этом разделе вы можете ознакомиться с имеющимися номерами и завяками на них'
     }
 
-    async function deleteRoom(id: number) {
+    const formatDate = (isoString: string) => 
+        new Date(isoString).toLocaleString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+        });
+
+    const loadRooms = async () => {
         try {
-            const res = await fetch('/api/rooms/list', {
+            const responce = await fetch('/api/rooms/list');
+
+            if (!responce.ok) throw new Error('Ошибка при загрузке списка номеров');
+
+            const data = await responce.json();
+            setRooms(data);
+        } catch(error) {
+            console.error(error)
+        }
+    }
+
+    const deleteRoom = async (id: number) => {
+        try {
+            const responce = await fetch('/api/rooms/list', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id }),
             });
 
-            const data = await res.json();
+            const data = await responce.json();
 
-            console.log(data);
-
-            if (!res.ok) {
-                console.error(`Ошибка при удалении ${data.error}`);
+            if (!responce.ok) {
+                console.error(`Ошибка при удалении номера: ${data.error}`);
                 return;
             }
 
             loadRooms();
-        } catch (error) {
+        } catch(error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
         loadRooms();
@@ -62,44 +76,58 @@ export default function DashboardRooms() {
     return (
         <>
             <TitleContainer item={titleContainer} />
-            <div>
-                {isFormOpen ? (
-                    <AddRoomForm onRoomAdded={() => {
-                        loadRooms();
-                        setIsFormOpen(false);
-                    }} onCancel={() => setIsFormOpen(false)} />
-                ) : (
-                    <>
-                        <button onClick={() => setIsFormOpen(true)}>
-                            Добавить номер
-                        </button>
 
-                        {rooms.length === 0 ? (
-                            <p>Номеров пока нет</p>
-                        ) : (
-                            <ul>
-                                {rooms.map((room: any) => (
-                                    <li key={room.id}>{room.title} <button onClick={() => { setRoomToDelete(room.id); dispatch(openModal()) }}>Удалить</button></li>
-                                ))}
-                            </ul>
-                        )}
-
-                        {isModalOpen ? (<SureModal
-                            sureText="Вы уверены, что хотите удалить номер?"
-                            handleDecline={() => { setRoomToDelete(null); dispatch(closeModal()) }}
-                            handleAccept={() => {
-                                if (roomToDelete !== null) {
-                                    deleteRoom(roomToDelete);
-                                }
-                                setRoomToDelete(null);
-                                dispatch(closeModal());
-                            }}
-                        />)
-                            : ''
-                        }
-                    </>
-                )}
+            <div className="dashboard-rooms">
+                <button onClick={() => router.push('/admin/dashboard/rooms/add')}>
+                    Добавить номер
+                </button>
             </div>
+
+            {rooms.length === 0 ? (
+                <p>Номеров пока нет</p>
+            ) : (
+                <ul className="rooms-list">
+                    {rooms.map((room) => (
+                        <li key={room.id} className="room-item">
+                            <div><strong>{room.title}</strong></div>
+                            <div>{room.description}</div>
+                            <div>{formatDate(room.updatedAt)}</div>
+                            <div>{room.price}</div>
+
+
+                            <button 
+                                onClick={() => router.push(`/admin/dashboard/rooms/edit/${room.slug}`)}
+                                className="edit-btn"
+                            >
+                                Редактировать
+                            </button>
+                            <button onClick={() => {setRoomToDelete(room.id); dispatch(openModal())}}>
+                                Удалить
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            {isModalOpen && (
+                <SureModal 
+                    sureText='Вы уверены, что хотите удалить номер?'
+
+                    handleDecline={() => {
+                        setRoomToDelete(null);
+                        dispatch(closeModal());
+                    }}
+
+                    handleAccept={() => {
+                        if(roomToDelete !== null) {
+                            deleteRoom(roomToDelete);
+                        }
+
+                        setRoomToDelete(null);
+                        dispatch(closeModal());
+                    }}
+                />
+            )}
         </>
-    )
+    );
 }
