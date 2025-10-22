@@ -95,7 +95,6 @@ export default function DashboardRooms() {
                         <p className="room-subItem">Дата редактирования</p>
                         <p className="room-subItem">Цена за ночь</p>
                         <div className="room-subItem"></div>
-                        <div className="room-subItem"></div>
                     </li>
                     {rooms.map((room) => (
                         <li key={room.id} className="room-item">
@@ -103,19 +102,20 @@ export default function DashboardRooms() {
                             <div className="room-subItem">{formatDate(room.updatedAt)}</div>
                             <div className="room-subItem">{room.price.toLocaleString()} руб.</div>
 
-
-                            <button 
-                                onClick={() => router.push(`/admin/dashboard/rooms/edit/${room.slug}`)}
-                                className="room-subItem room-edit-btn action-button"
-                            >
-                                Редактировать
-                            </button>
-                            <button 
-                                onClick={() => {setRoomToDelete(room.id); dispatch(openModal())}}
-                                className="room-subItem room-delete-btn action-button"    
-                            >
-                                Удалить
-                            </button>
+                            <div className="room-btn-block">
+                                <button 
+                                    onClick={() => router.push(`/admin/dashboard/rooms/edit/${room.slug}`)}
+                                    className="room-subItem room-edit-btn"
+                                >
+                                    Редактировать
+                                </button>
+                                <button 
+                                    onClick={() => {setRoomToDelete(room.id); dispatch(openModal())}}
+                                    className="room-subItem room-delete-btn"    
+                                >
+                                    Удалить
+                                </button>
+                            </div>
                         </li>
                     ))}
                 </ul>
