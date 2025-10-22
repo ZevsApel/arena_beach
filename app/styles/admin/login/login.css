@@ -107,21 +107,3 @@
 .auth-form__input:focus-within {
   outline: 1px solid var(--main-accent);
 }
-
-.auth-form__submit {
-  background-color: var(--main-custom);
-  
-  border-radius: var(--regular-border-radius);
-
-  color: var(--text-white);
-
-  width: fit-content;
-
-  padding: round(.8rem, 2px) round(3.6rem, 2px);
-
-  cursor: pointer;
-}
-
-.auth-form__submit:hover {
-  background-color: var(--main-secondary);
-}

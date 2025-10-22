@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import './styles/admin/login/login.css';
 @import './styles/admin/dashboard/dashboard.css';
+@import './styles/admin/dashboard/rooms/list.css';
+
+@import './styles/components/sureModal.css';
 
 :root {
   --main-white: rgba(253, 255, 255, 1);
@@ -77,3 +80,24 @@ div, input, button, a, p, span, b, strong {
   font-family: var(--regular-font);
 }
 
+button {
+  cursor: pointer;
+}
+
+.action-button {
+  background-color: var(--main-custom);
+  
+  border-radius: var(--regular-border-radius);
+
+  color: var(--text-white);
+
+  width: fit-content;
+
+  padding: round(.8rem, 2px) round(3.6rem, 2px);
+
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: var(--main-secondary);
+}

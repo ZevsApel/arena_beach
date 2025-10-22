@@ -73,7 +73,7 @@ export default function AdminLogin() {
             </div>
             <button
               type="submit"
-              className="auth-form__submit"
+              className="auth-form__submit action-button"
             >
               Войти в аккаунт
             </button>

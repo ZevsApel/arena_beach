@@ -78,7 +78,10 @@ export default function DashboardRooms() {
             <TitleContainer item={titleContainer} />
 
             <div className="dashboard-rooms">
-                <button onClick={() => router.push('/admin/dashboard/rooms/add')}>
+                <button 
+                    onClick={() => router.push('/admin/dashboard/rooms/add')}
+                    className="action-button"
+                >
                     Добавить номер
                 </button>
             </div>
@@ -87,21 +90,30 @@ export default function DashboardRooms() {
                 <p>Номеров пока нет</p>
             ) : (
                 <ul className="rooms-list">
+                    <li className="room-item room-item__heading">
+                        <p className="room-subItem">Название номера</p>
+                        <p className="room-subItem">Дата редактирования</p>
+                        <p className="room-subItem">Цена за ночь</p>
+                        <div className="room-subItem"></div>
+                        <div className="room-subItem"></div>
+                    </li>
                     {rooms.map((room) => (
                         <li key={room.id} className="room-item">
-                            <div><strong>{room.title}</strong></div>
-                            <div>{room.description}</div>
-                            <div>{formatDate(room.updatedAt)}</div>
-                            <div>{room.price}</div>
+                            <div className="room-subItem"><button className="subItem-edit-room" onClick={() => router.push(`/admin/dashboard/rooms/edit/${room.slug}`)}>{room.title}</button></div>
+                            <div className="room-subItem">{formatDate(room.updatedAt)}</div>
+                            <div className="room-subItem">{room.price.toLocaleString()} руб.</div>
 
 
                             <button 
                                 onClick={() => router.push(`/admin/dashboard/rooms/edit/${room.slug}`)}
-                                className="edit-btn"
+                                className="room-subItem room-edit-btn action-button"
                             >
                                 Редактировать
                             </button>
-                            <button onClick={() => {setRoomToDelete(room.id); dispatch(openModal())}}>
+                            <button 
+                                onClick={() => {setRoomToDelete(room.id); dispatch(openModal())}}
+                                className="room-subItem room-delete-btn action-button"    
+                            >
                                 Удалить
                             </button>
                         </li>
