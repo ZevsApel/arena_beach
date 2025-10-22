@@ -1,14 +1,14 @@
 .rooms-list {
     margin-top: 3rem;
+    
+    max-width: 1415px;
+    width: 100%;
 }
 
 .room-item {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: .4fr .4fr .4fr 1fr;
     align-items: center;
-
-    width: 100%;
-    max-width: 1155px;
 
     padding: 2.5rem 2rem;
 
@@ -47,15 +47,23 @@
     font-weight: 500;
 }
 
-.action-button.room-edit-btn,
-.action-button.room-delete-btn {
-    padding: round(.6rem, 2px) round(1.6rem, 2px);
+.room-btn-block {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
 }
 
-.room-edit-btn {
-    margin: auto;
-}
-
+.room-edit-btn,
 .room-delete-btn {
-    margin: 0 0 0 auto;
+    background-color: transparent;
+
+    border: 1px solid var(--main-accent);
+    border-radius: var(--regular-border-radius);
+
+    width: fit-content;
+
+    color: var(--text-accent);
+    font-weight: 500;
+
+    padding: round(.6rem, 2px) 3rem;
 }
