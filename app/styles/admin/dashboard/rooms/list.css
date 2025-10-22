@@ -1,0 +1,61 @@
+.rooms-list {
+    margin-top: 3rem;
+}
+
+.room-item {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+
+    width: 100%;
+    max-width: 1155px;
+
+    padding: 2.5rem 2rem;
+
+    border-bottom: 2px solid var(--text-unnoticed);
+
+    color: var(--text-dark);
+}
+
+
+.room-item__heading {
+    border: none;
+    border-radius: var(--regular-border-radius);
+
+    background-color: var(--main-bubbles);
+
+    padding: 1.5rem 2rem;
+
+    font-weight: 500;
+}
+
+
+.room-subItem {
+    text-align: center;
+}
+
+.room-subItem:first-child {
+    text-align: left;
+}
+
+.room-subItem:last-child {
+    text-align: right;
+}
+
+.subItem-edit-room {
+    color: var(--text-custom);
+    font-weight: 500;
+}
+
+.action-button.room-edit-btn,
+.action-button.room-delete-btn {
+    padding: round(.6rem, 2px) round(1.6rem, 2px);
+}
+
+.room-edit-btn {
+    margin: auto;
+}
+
+.room-delete-btn {
+    margin: 0 0 0 auto;
+}

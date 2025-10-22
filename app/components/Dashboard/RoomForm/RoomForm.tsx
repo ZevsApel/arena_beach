@@ -68,14 +68,14 @@ export default function RoomForm({ onRoomSaved, onCancel, room }: RoomFormProps)
     function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const newTitle = e.target.value;
         setTitle(newTitle);
-        if (!room) setSlug(transliterate(newTitle)); // slug нельзя менять при редактировании
+        if (!room) setSlug(transliterate(newTitle));
     }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
         const method = room ? 'PUT' : 'POST';
-        const url = room ? `/api/rooms/edit/${room.slug}` : '/api/rooms/list';
+        const url = room ? `/api/rooms/${room.slug}` : '/api/rooms/list';
 
         const response = await fetch(url, {
             method,

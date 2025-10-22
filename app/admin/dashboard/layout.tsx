@@ -59,7 +59,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         <MenuContainer items={menuitems} className="" />
                     </div>
                     <div className="auth-form__submit-block">
-                        <button className="auth-form__submit" onClick={handleLogout}>Выйти из аккаунта</button>
+                        <button className="action-button" onClick={handleLogout}>Выйти из аккаунта</button>
                     </div>
                 </div>
                 <div className="dashboard-section">

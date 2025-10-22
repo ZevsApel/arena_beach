@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import RoomForm from "@/app/components/Dashboard/RoomForm/RoomForm";
+import TitleContainer, { TitleData } from "@/app/components/Dashboard/TitleContainer/TitleContainer";
 
 type RoomData = {
   title: string;
@@ -13,6 +14,11 @@ type RoomData = {
   features: { icon: string; label: string }[];
   images: { path: string }[];
 };
+
+const titleContainer: TitleData = {
+  title: 'Редактировать номер',
+  subTitleText: 'Здесь Вы можете изменить информацию о номере'
+}
 
 export default function EditRoomPage() {
   const router = useRouter();
@@ -50,7 +56,7 @@ export default function EditRoomPage() {
 
   return (
     <div className="room-page__edit">
-      <h2>Редактировать номер</h2>
+      <TitleContainer item={titleContainer} />
       <RoomForm
         room={room}
         onRoomSaved={handleRoomUpdated}
