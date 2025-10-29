@@ -1,3 +1,9 @@
+import Slogan from "./components/Slogan/Slogan";
+
 export default function Home() {
-  return <div>Hello, World!</div>;
+  return (
+    <>
+      <Slogan></Slogan>
+    </>
+  );
 }
