@@ -15,7 +15,7 @@ export async function POST() {
       {
         status: 200,
         headers: { 'Set-Cookie': cookie },
-      }
+      },
     );
   } catch (error) {
     console.error('Ошибка выхода:', error);

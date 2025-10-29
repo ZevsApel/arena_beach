@@ -1,35 +1,28 @@
 {
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "./tsconfig.json",
-      "ecmaFeatures": { "jsx": true }, // Поддержка JSX
-      "ecmaVersion": "latest", // Поддержка ES2022+
-      "sourceType": "module" // Поддержка ES-модули
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "plugins": ["@typescript-eslint"],
-    "rules": {
-        // Помогает избегать создания нестабильных вложенных компонентов
-        "react/no-unstable-nested-components": "warn",
-      
-        // Разрешает JSX только в .tsx файлах
-        "react/jsx-filename-extension": [
-          2,
-          {
-            "extensions": [".tsx"]
-          }
-        ],
-      
-        // Помогает находить неиспользуемые переменные 
-        "@typescript-eslint/no-unused-vars": [
-          "error",
-          // Игнорирует параметры, начинающиеся с _
-          {
-            "destructuredArrayIgnorePattern": "^_",
-            "argsIgnorePattern": "^_"
-          }
-        ],
-      
-        // Требует использование import type для импортов типов
-        "@typescript-eslint/consistent-type-imports": "error"
-      }
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ]
+  },
+  "settings": {
+    "react": { "version": "detect", "jsx-runtime": "automatic" }
   }
+}

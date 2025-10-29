@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import './styles/admin/login/login.css';
 @import './styles/admin/dashboard/dashboard.css';
 @import './styles/admin/dashboard/rooms/list.css';
@@ -21,7 +21,6 @@
   --text-dark: rgba(76, 76, 76, 1);
   --text-faceless: rgba(156, 156, 157, 1);
   --text-unnoticed: rgba(212, 212, 212, 1);
-  
 
   --map-beach: rgba(255, 251, 232, 1);
 
@@ -33,13 +32,11 @@
   --map-priority-on: rgba(136, 218, 239, 1);
   --map-small-priority-on: rgba(184, 241, 255, 1);
 
-
-  
   --title-font: 'Unbounded', sans-serif;
   --regular-font: 'Manrope', sans-serif;
 
   --title-fsz-large: 3rem;
-  --title-fsz-medium: 1.5rem; 
+  --title-fsz-medium: 1.5rem;
   --title-fsz-little: 1rem;
 
   --heading-fsz-large: 1.5rem;
@@ -47,9 +44,9 @@
 
   --text-fsz-large: 1.25;
   --text-fsz-medium: 1rem;
-  --text-fsz-little: .875rem;
+  --text-fsz-little: 0.875rem;
 
-  --regular-border-radius: .375rem;
+  --regular-border-radius: 0.375rem;
 }
 
 body {
@@ -72,11 +69,23 @@ body {
   font-display: swap;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--title-font);
 }
 
-div, input, button, a, p, span, b, strong {
+div,
+input,
+button,
+a,
+p,
+span,
+b,
+strong {
   font-family: var(--regular-font);
 }
 
@@ -86,14 +95,14 @@ button {
 
 .action-button {
   background-color: var(--main-custom);
-  
+
   border-radius: var(--regular-border-radius);
 
   color: var(--text-white);
 
   width: fit-content;
 
-  padding: round(.8rem, 2px) round(3.6rem, 2px);
+  padding: round(0.8rem, 2px) round(3.6rem, 2px);
 
   cursor: pointer;
 }

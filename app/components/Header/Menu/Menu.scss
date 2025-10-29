@@ -1,0 +1,15 @@
+.header-menu {
+    width: 100%;
+    max-width: 560px;
+}
+
+.header-menu-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-item-link {
+    color: var(--text-dark);
+    font-weight: 500;
+}

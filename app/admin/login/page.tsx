@@ -24,7 +24,7 @@ export default function AdminLogin() {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      
+
       if (res.ok) {
         dispatch(setUserEmail(data.email));
         router.push('/admin/dashboard');
@@ -40,15 +40,18 @@ export default function AdminLogin() {
     <div className="auth">
       <div className="auth-form">
         <div className="auth-form__left">
-            <h1 className="auth-form__title">Вход</h1>
-            <p className='auth-form__additional-text'>Для входа в систему административной панели отеля Arena&nbsp;Beach введите свои учетные данные.</p>
-            <Image src="/svg/logo/logo.svg" alt="Логотип" width={120} height ={50} />
+          <h1 className="auth-form__title">Вход</h1>
+          <p className="auth-form__additional-text">
+            Для входа в систему административной панели отеля Arena&nbsp;Beach введите свои учетные
+            данные.
+          </p>
+          <Image src="/svg/logo/logo.svg" alt="Логотип" width={120} height={50} />
         </div>
-        <div className='auth-form__right'>
+        <div className="auth-form__right">
           {error && <p className="auth-form__error">{error}</p>}
           <form onSubmit={handleSubmit} className="auth-form__container">
-            <div className='auth-form__items'>
-              <div className='auth-form__item auth-form__item--email'>
+            <div className="auth-form__items">
+              <div className="auth-form__item auth-form__item--email">
                 <input
                   id="email"
                   type="email"
@@ -56,10 +59,10 @@ export default function AdminLogin() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="auth-form__input"
                   required
-                  placeholder='Email'
+                  placeholder="Email"
                 />
               </div>
-              <div className='auth-form__item auth-form__item--password'>
+              <div className="auth-form__item auth-form__item--password">
                 <input
                   id="password"
                   type="password"
@@ -67,14 +70,11 @@ export default function AdminLogin() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="auth-form__input"
                   required
-                  placeholder='Пароль'
+                  placeholder="Пароль"
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              className="auth-form__submit action-button"
-            >
+            <button type="submit" className="auth-form__submit action-button">
               Войти в аккаунт
             </button>
           </form>
