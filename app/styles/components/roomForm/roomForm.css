@@ -1,0 +1,41 @@
+.room-form {
+  display: grid;
+  gap: round(1.9rem, 10px);
+
+  background-color: var(--main-white);
+
+  padding: 2.5rem;
+
+  border-radius: var(--regular-border-radius);
+}
+
+.input-block-title {
+  font-size: var(--text-fsz-large);
+  color: var(--text-accent);
+
+  margin-bottom: 1.25rem;
+}
+
+.form-input {
+  outline: 1px solid var(--text-secondary);
+
+  border-radius: var(--regular-border-radius);
+
+  padding: 1.25rem 1.125rem;
+
+  font-size: var(--text-fsz-large);
+  color: var(--text-dark);
+
+  width: 100%;
+
+  transition: outline 0.5s ease;
+}
+
+.form-input:focus-within {
+  outline: 1px solid var(--main-accent);
+}
+
+.feature-item-block {
+  display: grid;
+  grid-template-columns: repeat(3, 0.1fr);
+}

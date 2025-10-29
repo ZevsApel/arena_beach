@@ -24,7 +24,6 @@
   flex: 0 0 47.1%;
 }
 
-
 .auth-form__title {
   font-size: var(--title-fsz-large);
   font-weight: 600;
@@ -39,7 +38,6 @@
   margin-bottom: round(2.62rem, 2px);
 }
 
-
 .auth-form__container {
   text-align: right;
 }
@@ -50,7 +48,6 @@
 
   margin-bottom: round(1.2rem, 10px);
 }
-
 
 .auth-form__item {
   position: relative;
@@ -73,7 +70,7 @@
   display: block;
 
   opacity: 0;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .auth-form__item:focus-within:before {
@@ -96,9 +93,8 @@
 
   color: var(--text-faceless);
 
-  padding: .7rem round(1.9rem, 10px);
+  padding: 0.7rem round(1.9rem, 10px);
 }
-
 
 .auth-form__input:hover {
   outline: 1px solid var(--main-secondary);

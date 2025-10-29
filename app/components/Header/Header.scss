@@ -1,0 +1,51 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.25rem round(13rem, 10px);
+}
+
+.booking-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .125rem;
+
+    width: 13.75rem;
+    height: 2.75rem;
+
+    padding: .75rem 1rem;
+
+    border: 1px solid var(--main-accent);
+    border-radius: var(--regular-border-radius);
+
+    color: var(--text-accent);
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 500;
+
+    transition: background-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
+
+    & svg path {
+        width: 1.5rem;
+        height: 1.5rem;
+
+        fill: var(--text-accent);
+    }
+
+    &:hover {
+        background-color: var(--main-secondary);
+    }
+
+    &:focus {
+        background-color: var(--main-custom);
+
+        color: var(--main-white);
+
+        & svg path {
+            fill: var(--main-white);
+        }
+    }
+}

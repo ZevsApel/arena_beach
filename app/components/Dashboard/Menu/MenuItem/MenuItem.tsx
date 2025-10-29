@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface MenuItemProps {
   href: string;
@@ -35,7 +35,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
         alt={title}
         width={16}
         height={16}
-        className='dashboard-link__img'
+        className="dashboard-link__img"
       />
       {title}
     </Link>

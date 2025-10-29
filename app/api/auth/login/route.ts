@@ -24,7 +24,8 @@ export async function POST(request: Request) {
       });
     }
 
-    const timeSinceLastAttempt = new Date().getTime() - new Date(loginAttempt.lastAttempt).getTime();
+    const timeSinceLastAttempt =
+      new Date().getTime() - new Date(loginAttempt.lastAttempt).getTime();
     if (timeSinceLastAttempt > LOCKOUT_DURATION) {
       await prisma.loginAttempt.update({
         where: { id: loginAttempt.id },
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
     if (loginAttempt.attempts >= MAX_ATTEMPTS) {
       return NextResponse.json(
         { message: 'Слишком много попыток.<br>Попробуйте снова через 15 минут.' },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
     const token = jwt.sign(
       { id: admin.id, email: admin.email, role: 'admin' },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '1h' },
     );
 
     const cookie = serialize('token', token, {
@@ -78,7 +79,7 @@ export async function POST(request: Request) {
       {
         status: 200,
         headers: { 'Set-Cookie': cookie },
-      }
+      },
     );
   } catch (error) {
     console.error('API Error:', error);

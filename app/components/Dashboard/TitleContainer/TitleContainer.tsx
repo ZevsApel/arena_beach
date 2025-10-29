@@ -1,22 +1,22 @@
-import SubTitle from "./SubTitle/SubTitle";
-import Title from "./Title/Title";
+import SubTitle from './SubTitle/SubTitle';
+import Title from './Title/Title';
 
 export interface TitleData {
-    title: string;
-    subTitleText: string;
+  title: string;
+  subTitleText: string;
 }
 
 interface TitleContainerProps {
-    item: TitleData;
+  item: TitleData;
 }
 
 const TitleContainer: React.FC<TitleContainerProps> = ({ item }) => {
-    return (
-        <div className="dashboard-section__top">
-            <Title title={item.title} />
-            <SubTitle subTitleText={item.subTitleText}/>
-        </div>
-    )
-}
+  return (
+    <div className="dashboard-section__top">
+      <Title title={item.title} />
+      <SubTitle subTitleText={item.subTitleText} />
+    </div>
+  );
+};
 
 export default TitleContainer;

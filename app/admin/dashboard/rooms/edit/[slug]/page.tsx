@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
-import RoomForm from "@/app/components/Dashboard/RoomForm/RoomForm";
-import TitleContainer, { TitleData } from "@/app/components/Dashboard/TitleContainer/TitleContainer";
+import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import RoomForm from '@/app/components/Dashboard/RoomForm/RoomForm';
+import TitleContainer, {
+  TitleData,
+} from '@/app/components/Dashboard/TitleContainer/TitleContainer';
 
 type RoomData = {
   title: string;
@@ -17,13 +19,13 @@ type RoomData = {
 
 const titleContainer: TitleData = {
   title: 'Редактировать номер',
-  subTitleText: 'Здесь Вы можете изменить информацию о номере'
-}
+  subTitleText: 'Здесь Вы можете изменить информацию о номере',
+};
 
 export default function EditRoomPage() {
   const router = useRouter();
   const params = useParams();
-  const slug = typeof params?.slug === "string" ? params.slug : undefined;
+  const slug = typeof params?.slug === 'string' ? params.slug : undefined;
 
   const [room, setRoom] = useState<RoomData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -34,7 +36,7 @@ export default function EditRoomPage() {
     async function loadRoom() {
       try {
         const response = await fetch(`/api/rooms/${slug}`);
-        if (!response.ok) throw new Error("Ошибка при загрузке номера");
+        if (!response.ok) throw new Error('Ошибка при загрузке номера');
         const data = await response.json();
         setRoom(data);
       } catch (error) {
@@ -48,7 +50,7 @@ export default function EditRoomPage() {
   }, [slug]);
 
   const handleRoomUpdated = () => {
-    router.push("/admin/dashboard/rooms");
+    router.push('/admin/dashboard/rooms');
   };
 
   if (loading) return <p>Загрузка...</p>;
@@ -60,7 +62,7 @@ export default function EditRoomPage() {
       <RoomForm
         room={room}
         onRoomSaved={handleRoomUpdated}
-        onCancel={() => router.push("/admin/dashboard/rooms")}
+        onCancel={() => router.push('/admin/dashboard/rooms')}
       />
     </div>
   );

@@ -1,12 +1,9 @@
 interface TitleProps {
-    title: string;
+  title: string;
 }
-
 
 const Title: React.FC<TitleProps> = ({ title }) => {
-    return (
-        <h2 className="dashboard-top__title">{title}</h2>
-    )
-}
+  return <h2 className="dashboard-top__title">{title}</h2>;
+};
 
 export default Title;

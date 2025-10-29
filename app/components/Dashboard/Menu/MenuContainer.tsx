@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -54,22 +54,17 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ items, className = '' }) 
     const isValidMenuItem = savedMenuItemId && items.some((item) => item.id === savedMenuItemId);
 
     if (isValidMenuItem && savedMenuItemId !== activeMenuItemId) {
-
       // Восстанавливаем из sessionStorage
       dispatch(setActiveMenuItem(savedMenuItemId));
       console.log('Restored activeMenuItemId from sessionStorage:', savedMenuItemId);
-      
     } else if (!isValidMenuItem || !savedMenuItemId) {
-
       // Если sessionStorage пуст или ID невалиден, устанавливаем первый пункт меню
       const defaultMenuItem = items[0]?.id || null;
 
       if (defaultMenuItem && defaultMenuItem !== activeMenuItemId) {
-
         dispatch(setActiveMenuItem(defaultMenuItem));
         sessionStorage.setItem('activeMenuItemId', defaultMenuItem || '');
         console.log('Set activeMenuItemId to default:', defaultMenuItem);
-        
       }
     }
   }, [dispatch, items, activeMenuItemId]);
@@ -84,7 +79,7 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ items, className = '' }) 
   }
 
   return (
-    <nav className='dashboard-sidebar__nav'>
+    <nav className="dashboard-sidebar__nav">
       <ul className="dashboard-nav__list">
         {items.map((item) => {
           const isItemActive = item.id === activeMenuItemId;

@@ -1,11 +1,9 @@
 interface SubTitleProps {
-    subTitleText: string;
+  subTitleText: string;
 }
 
 const SubTitle: React.FC<SubTitleProps> = ({ subTitleText }) => {
-    return (
-        <p className="dashboard-top__text">{subTitleText}</p>
-    )
-}
+  return <p className="dashboard-top__text">{subTitleText}</p>;
+};
 
 export default SubTitle;
