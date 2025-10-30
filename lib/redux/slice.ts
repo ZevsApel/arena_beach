@@ -3,6 +3,7 @@ import uiReducer from './slices/uiSlice';
 import emailReducer from './slices/emailSLice';
 import menuReducer from './slices/dashboard/menu/menuSlice';
 import modalReducer from './slices/modal/modalSlice';
+import bookingReducer from './slices/booking/booking'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     email: emailReducer,
     menuItem: menuReducer,
     modal: modalReducer,
+    booking: bookingReducer,
   },
 });
 
