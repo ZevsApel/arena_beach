@@ -1,3 +1,4 @@
+import BigImage from "./components/BigImage/BigImage";
 import BookingForm from "./components/SearchPanel/SearchPanel";
 import Slogan from "./components/Slogan/Slogan";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Slogan></Slogan>
       <BookingForm></BookingForm>
+      <BigImage></BigImage>
     </>
   );
 }
