@@ -1,0 +1,69 @@
+.search-panel-block {
+    max-width: 93.75rem;
+    margin: auto;
+}
+
+.search-panel-form {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 70rem;
+    margin: 0 0 0 auto;
+    padding: .75rem 1.25rem;
+
+    border: 1px solid var(--text-faceless);
+    border-radius: 25rem;
+}
+
+.panel-form {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.panel-choose-date,
+.number-of-people  {
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+}
+
+.panel-number-of-people {
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &:before {
+        content: '';
+        
+        display: block;
+        height: 2rem;
+        width: 1px;
+
+        background-color: var(--text-faceless);
+    }
+}
+
+.search-button {
+    display: grid;
+}
+
+.choose-popover {
+    position: absolute;
+
+    width: 100%;
+    max-width: 76.25rem;
+
+    left: 0;
+    bottom: 0;
+
+    padding: 1rem 1.5rem;
+
+    border-radius: .31rem;
+
+    background-color: var(--main-white);
+}

@@ -6,90 +6,103 @@ import GuestsPopover from './GuestPopover/GuestPopover';
 import { useRouter } from 'next/navigation';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import { useAppSelector } from '../../../lib/redux/hooks';
-
+import './SearchPanel.scss';
 
 const BookingForm = () => {
-
-    const booking = useAppSelector(s => s.booking);
+  const booking = useAppSelector(s => s.booking);
   const router = useRouter();
 
-  const [openCalendar, setOpenCalendar] = useState(false);
-  const [openGuests, setOpenGuests] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  // Отдельные refs для каждого поповера
-  const calendarRef = useRef<HTMLDivElement | null>(null);
-  const guestsRef = useRef<HTMLDivElement | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const guestsRef = useRef<{ save: () => void } | null>(null);
 
-  // Закрытие при клике вне поповера
-  useOutsideClick(calendarRef as React.RefObject<HTMLElement>, () => setOpenCalendar(false));
-  useOutsideClick(guestsRef as React.RefObject<HTMLElement>, () => setOpenGuests(false));
+  useOutsideClick(popoverRef as React.RefObject<HTMLElement>, () => {
+    guestsRef.current?.save();
+    setOpen(false);
+  });
 
-  const formatRange = () => {
-    if (booking.checkIn && booking.checkOut) {
-      const inDate = new Date(booking.checkIn).toLocaleDateString();
-      const outDate = new Date(booking.checkOut).toLocaleDateString();
-      return `${inDate} - ${outDate}`;
-    }
-    return 'Выбрать даты';
+  const formatDisplay = () => {
+    const inDate = booking.checkIn ? new Date(booking.checkIn).toLocaleDateString() : '';
+    const outDate = booking.checkOut ? new Date(booking.checkOut).toLocaleDateString() : '';
+
+    return (
+      <div className="panel-form">
+        <div className="panel-choose-date">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M21.6602 9.18076V14.5401C21.6602 19.3068 21.6511 19.9253 21.5908 20.1368C21.4054 20.7749 20.8662 21.3184 20.2324 21.5167C19.9781 21.5942 19.6987 21.5987 12.002 21.5987C4.30129 21.5987 4.0249 21.5943 3.77051 21.5167C3.13688 21.3182 2.59845 20.7748 2.41309 20.1368C2.35279 19.9253 2.34375 19.307 2.34375 14.5401V9.18076H21.6602ZM7.25879 16.7823C6.84496 16.778 6.43949 16.7914 6.36621 16.8087C5.75442 16.9641 5.638 17.7224 6.18066 18.0372C6.31864 18.1191 6.40106 18.128 7.17285 18.128C7.94415 18.128 8.02624 18.119 8.16406 18.0372C8.62541 17.7656 8.62541 17.1536 8.16406 16.8819C8.03055 16.8002 7.93091 16.7909 7.25879 16.7823ZM12.0879 16.7823C11.6741 16.778 11.2686 16.7914 11.1953 16.8087C10.5835 16.9641 10.4671 17.7224 11.0098 18.0372C11.1477 18.1191 11.2302 18.128 12.002 18.128C12.7733 18.128 12.8553 18.119 12.9932 18.0372C13.4545 17.7656 13.4545 17.1536 12.9932 16.8819C12.8596 16.8002 12.76 16.7909 12.0879 16.7823ZM16.917 16.7823C16.5032 16.778 16.0977 16.7914 16.0244 16.8087C15.4126 16.964 15.2962 17.7224 15.8389 18.0372C15.9768 18.1191 16.0593 18.128 16.8311 18.128C17.6024 18.128 17.6844 18.119 17.8223 18.0372C18.2836 17.7656 18.2836 17.1536 17.8223 16.8819C17.6887 16.8002 17.5892 16.7909 16.917 16.7823ZM7.25879 12.6436C6.84496 12.6393 6.43949 12.6518 6.36621 12.669C5.75424 12.8244 5.6377 13.5837 6.18066 13.8985C6.31864 13.9805 6.40106 13.9884 7.17285 13.9884C7.94371 13.9884 8.02639 13.9802 8.16406 13.8985C8.62541 13.6269 8.62541 13.0139 8.16406 12.7423C8.03065 12.6606 7.93058 12.6523 7.25879 12.6436ZM12.0879 12.6436C11.6741 12.6393 11.2686 12.6518 11.1953 12.669C10.5833 12.8244 10.4668 13.5837 11.0098 13.8985C11.1477 13.9805 11.2302 13.9884 12.002 13.9884C12.7728 13.9884 12.8555 13.9802 12.9932 13.8985C13.4545 13.6269 13.4545 13.0139 12.9932 12.7423C12.8597 12.6606 12.7597 12.6523 12.0879 12.6436ZM16.917 12.6436C16.5032 12.6393 16.0977 12.6518 16.0244 12.669C15.4124 12.8244 15.2959 13.5837 15.8389 13.8985C15.9768 13.9805 16.0593 13.9884 16.8311 13.9884C17.6019 13.9884 17.6846 13.9802 17.8223 13.8985C18.2836 13.6269 18.2836 13.0139 17.8223 12.7423C17.6888 12.6606 17.5888 12.6523 16.917 12.6436ZM15.7617 2.4874C15.9557 2.37098 16.3265 2.37098 16.5205 2.4874C16.7747 2.64256 16.831 2.79323 16.8311 3.31454V3.78036H18.4004C19.818 3.78036 19.9955 3.78924 20.2324 3.8624C20.8662 4.06073 21.4054 4.60418 21.5908 5.24228C21.6469 5.43197 21.6602 5.71219 21.6602 6.69931V7.92001H2.34375V6.69931C2.34375 5.71219 2.35704 5.43197 2.41309 5.24228C2.59848 4.6043 3.13686 4.06081 3.77051 3.8624C4.00765 3.7891 4.18497 3.78036 5.60352 3.78036H7.17285V3.31454C7.17288 2.79319 7.2291 2.64257 7.4834 2.4874C7.57818 2.42708 7.70296 2.40052 7.8623 2.40048C8.14256 2.40048 8.33745 2.50407 8.4668 2.71103C8.54007 2.83171 8.55273 2.93115 8.55273 3.31454V3.78036H15.4512V3.31454C15.4512 2.79324 15.5075 2.64255 15.7617 2.4874Z" fill="#2D7B9E"/>
+          </svg>
+          {inDate && outDate ? `${inDate} — ${outDate}` : 'Выбрать даты'}
+        </div>
+        <div className="panel-number-of-people">
+          <div className="number-of-people">
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20" fill="none">
+                <path d="M13.1641 9.7016C13.2922 9.80174 13.5636 10.0456 13.7715 10.2495C15.5879 12.0258 16.6444 14.4865 16.6445 16.935C16.6445 17.3951 16.6285 17.5639 16.5645 17.768C16.3723 18.4 15.8401 18.9285 15.208 19.1205C14.9601 19.2005 14.801 19.1996 8.32227 19.1996C1.84269 19.1996 1.68445 19.2005 1.43652 19.1205C0.804448 18.9285 0.272209 18.4 0.0800781 17.768C0.0160603 17.5639 0 17.3951 0 16.935C0.000151318 14.2544 1.31291 11.4894 3.40137 9.76898C3.645 9.56531 3.70877 9.5298 3.76074 9.56976C3.79274 9.59376 3.9532 9.73712 4.11719 9.8891C4.27723 10.0371 4.57338 10.2698 4.77344 10.4018C7.21806 12.0341 10.4065 11.8057 12.5791 9.84125L12.9355 9.52094L13.1641 9.7016ZM7.38672 0.059021C7.81484 -0.0170002 8.7836 -0.0209064 9.21973 0.0551147C9.93577 0.179214 10.7043 0.494759 11.2803 0.902771C11.6484 1.16291 12.232 1.74372 12.5 2.11176C12.936 2.71989 13.2527 3.47603 13.3848 4.22015C13.4607 4.66827 13.4607 5.56401 13.3848 6.01215C13.1967 7.09245 12.6959 8.0248 11.8877 8.80902C10.8955 9.76919 9.72749 10.2377 8.32324 10.2377C7.43907 10.2377 6.74655 10.0778 5.98242 9.69379C5.49429 9.44572 5.08994 9.14906 4.67383 8.72894C3.68179 7.72481 3.20128 6.54473 3.20117 5.11664C3.20117 4.23639 3.37008 3.50393 3.74219 2.77972C4.22232 1.83547 5.09049 0.97501 6.01074 0.522888C6.43479 0.314906 6.97871 0.135029 7.38672 0.059021Z" fill="#2D7B9E"/>
+              </svg>
+              {booking.rooms} ном., {booking.adults} взр., {booking.children} дет.
+          </div>
+        </div>
+      </div>
+    );
   };
 
-  const formatGuests = () => `${booking.rooms} ном., ${booking.adults} взр., ${booking.children} дет.`;
+  const closePopover = () => {
+    guestsRef.current?.save();
+    setOpen(false);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault(); // чтобы форма не перезагружала страницу
-    router.push('/rooms');
+    e.preventDefault();
+
+    if (!booking.checkIn || !booking.checkOut) {
+      alert("Пожалуйста, выберите даты");
+      return;
+    }
+
+    if (booking.adults < 1 || booking.rooms < 1) {
+      alert("Укажите количество гостей и номеров");
+      return;
+    }
+
+    setOpen(false);
+    router.push("/rooms");
   };
 
   return (
     <div className="search-panel-block">
       <form className="search-panel-form" onSubmit={handleSearch}>
-        <div className="panel-choose-date">
-          <button
-            type="button"
-            onClick={() => {
-              setOpenCalendar(v => !v);
-              setOpenGuests(false);
-            }}
-          >
-            {formatRange()}
-          </button>
+        
+        <button type="button" onClick={() => setOpen(v => !v)}>
+          {formatDisplay()}
+        </button>
 
-          {openCalendar && (
-            <div ref={calendarRef} style={{ position: "absolute", top: 44, zIndex: 1000 }}>
-              <DatePicker onClose={() => setOpenCalendar(false)} />
+        {open && (
+          <div ref={popoverRef} className="choose-popover">
+            <DatePicker />
+
+            <div className="choose-guests">
+              <GuestsPopover ref={guestsRef} />
             </div>
-          )}
-        </div>
 
-        <div className="panel-number-of-people">
-          <button
-            type="button"
-            onClick={() => {
-              setOpenGuests(v => !v);
-              setOpenCalendar(false);
-            }}
-          >
-            {formatGuests()}
-          </button>
-
-          {openGuests && (
-            <div ref={guestsRef} style={{ position: "absolute", top: 44, zIndex: 1000 }}>
-              <GuestsPopover onClose={() => setOpenGuests(false)} />
-            </div>
-          )}
-        </div>
+            <button type="button" onClick={closePopover}>
+              Готово
+            </button>
+          </div>
+        )}
 
         <div className="search-button">
-          <button
-            type="submit"
-            style={{ background: "#2563eb", color: "#fff", padding: "8px 12px", borderRadius: 6 }}
-          >
-            Найти
+          <button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="24" fill="#2D7B9E"/>
+              <circle cx="22.5" cy="22.5" r="5.98611" fill="#2D7B9E" stroke="white" stroke-width="2.97222"/>
+              <line x1="31.9492" y1="32.5508" x2="25.5852" y2="26.1869" stroke="white" stroke-width="2.97222"/>
+            </svg>
           </button>
         </div>
+
       </form>
     </div>
   );
-}
+};
 
 export default BookingForm;
