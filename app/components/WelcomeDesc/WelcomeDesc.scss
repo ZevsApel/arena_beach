@@ -1,0 +1,44 @@
+.welcome-desc-container {
+    max-width: 93.75rem;
+
+    margin: auto;
+}
+
+.top-text {
+    color: var(--main-accent);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 110%;
+    text-transform: uppercase;
+
+    &__centered {
+        display: inline-block;
+        width: 100%;
+
+        text-align: center;
+    }
+}
+
+.text-hr {
+    border: 1px solid var(--main-dark);
+    
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.desc-bottom-text {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.bottom-text-column {
+    color: var(--text-dark);
+    line-height: 125%;
+    font-weight: 500;
+}
+
+.greeting-text {
+    text-transform: uppercase;
+    color: var(--text-faceless);
+}
