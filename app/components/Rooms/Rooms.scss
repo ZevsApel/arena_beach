@@ -6,11 +6,24 @@
     }
 }
 
-.rooms-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    text-transform: uppercase;
 
-    margin-bottom: 3rem;
+.rooms-block {
+    display: grid;
+    grid-template-columns: 1fr .5fr .5fr;
+    gap: 1.25rem;
+}
+
+.room-image {
+    margin-bottom: 1.81rem;
+}
+
+.room-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--text-accent);
+    font-weight: 500;
+    font-size: var(--text-fsz-large);
+    text-transform: uppercase;
 }
