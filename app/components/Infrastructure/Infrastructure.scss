@@ -1,0 +1,39 @@
+.infrastructure-container {
+    max-width: 93.75rem;
+
+    margin: auto {
+        top: 6.25rem;
+    }
+}
+
+.top-content {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: .5fr .24fr; 
+
+    margin-bottom: 3.75rem;
+}
+
+.infrastructure-item {
+    padding-top: 2.55rem;
+    padding-bottom: 2.44rem;
+
+    border-top: 1px solid var(--text-faceless);
+    border-bottom: 1px solid var(--text-faceless);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--Text-Faceless, #9C9C9D);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 125%;
+
+    position: relative;
+}
+
+
+.item-image {
+    position: absolute;
+}

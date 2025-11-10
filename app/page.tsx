@@ -1,4 +1,5 @@
 import BigImage from "./components/BigImage/BigImage";
+import Infrastructure from "./components/Infrastructure/Infrastructure";
 import Rooms from "./components/Rooms/Rooms";
 import BookingForm from "./components/SearchPanel/SearchPanel";
 import Slogan from "./components/Slogan/Slogan";
@@ -12,6 +13,7 @@ export default function Home() {
       <BigImage></BigImage>
       <WelcomeDesc></WelcomeDesc>
       <Rooms></Rooms>
+      <Infrastructure></Infrastructure>
     </>
   );
 }
