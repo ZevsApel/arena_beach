@@ -1,0 +1,108 @@
+.slider-container {
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.slider-block {
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.slider-slide {
+    flex: 0 0 25%;
+
+    box-sizing: border-box;
+
+    padding: 0 .75rem;
+
+    &:first-child {
+        padding-left: 0;
+        padding-right: .75rem
+    }
+}
+
+.slider-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+// Кнопки навигации
+.slider-button {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background-color: var(--main-white);
+    border: none;
+    
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+    z-index: 10;
+
+    &:hover {
+        background-color: var(--main-secondary);
+    }
+
+    &:focus {
+        background-color: var(--main-custom);
+
+        & svg path {
+            fill: var(--main-white);
+        }
+    }
+
+    &--prev {
+        left: .75rem;
+        
+        padding: .81rem 1.06rem .75rem .81rem;
+    }
+
+    &--next {
+        right: 1.25rem;
+
+        padding: .81rem .81rem .75rem 1.06rem;
+    }
+}
+
+.slider-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+
+
+// Адаптивность
+@media (max-width: 1200px) {
+    .slider-slide {
+        flex: 0 0 33.333%; // 3 слайда на планшетах
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-slide {
+        flex: 0 0 50%; // 2 слайда на мобильных
+    }
+
+    .slider-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-slide {
+        flex: 0 0 100%; // 1 слайд на маленьких экранах
+    }
+}

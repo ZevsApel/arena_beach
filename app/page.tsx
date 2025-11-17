@@ -2,18 +2,24 @@ import BigImage from "./components/BigImage/BigImage";
 import Infrastructure from "./components/Infrastructure/Infrastructure";
 import Rooms from "./components/Rooms/Rooms";
 import BookingForm from "./components/SearchPanel/SearchPanel";
+import SliderBlock from "./components/SliderBlock/SliderBlock";
 import Slogan from "./components/Slogan/Slogan";
 import WelcomeDesc from "./components/WelcomeDesc/WelcomeDesc";
 
 export default function Home() {
+
+  
+
   return (
     <>
-      <Slogan></Slogan>
-      <BookingForm></BookingForm>
-      <BigImage></BigImage>
-      <WelcomeDesc></WelcomeDesc>
-      <Rooms></Rooms>
-      <Infrastructure></Infrastructure>
+      <Slogan />
+      <BookingForm />
+      <BigImage />
+      <WelcomeDesc />
+      <Rooms />
+      <Infrastructure />
+
+      <SliderBlock />      
     </>
   );
 }
