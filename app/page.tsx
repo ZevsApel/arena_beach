@@ -1,4 +1,5 @@
 import BigImage from "./components/BigImage/BigImage";
+import FAQ from "./components/FAQ/FAQ";
 import Infrastructure from "./components/Infrastructure/Infrastructure";
 import Rooms from "./components/Rooms/Rooms";
 import BookingForm from "./components/SearchPanel/SearchPanel";
@@ -19,7 +20,8 @@ export default function Home() {
       <Rooms />
       <Infrastructure />
 
-      <SliderBlock />      
+      <SliderBlock />   
+      <FAQ />
     </>
   );
 }
