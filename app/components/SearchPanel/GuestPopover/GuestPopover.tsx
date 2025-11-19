@@ -1,59 +1,45 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { setGuests } from "@/lib/redux/slices/booking/booking";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { RootState } from "@/lib/redux/slice";
+import { setAdults, setChildren, setRooms } from "@/lib/redux/slices/booking/booking";
+import { forwardRef, useImperativeHandle } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const GuestsPopover = forwardRef((_, ref) => {
-  const dispatch = useAppDispatch();
-  const { adults, children, rooms } = useAppSelector(s => s.booking);
+  const dispath = useDispatch();
+  const booking = useSelector((state: RootState) => state.booking);
 
-  const [localAdults, setLocalAdults] = useState(adults);
-  const [localChildren, setLocalChildren] = useState(children);
-  const [localRooms, setLocalRooms] = useState(rooms);
-
-  // Автоматически сохраняем изменения в Redux
-  const saveState = () => {
-    dispatch(setGuests({ adults: localAdults, children: localChildren, rooms: localRooms }));
-  };
+  const save = () => {}
 
   useImperativeHandle(ref, () => ({
-    save() {
-      saveState();
-    }
+    save,
   }));
 
   return (
-    <div>
-      <div>
+    <div className="guests-popover">
+      <div className="guests-row">
         <span>Взрослые</span>
-        <div>
-          <button type="button" onClick={() => { setLocalAdults(Math.max(1, localAdults - 1)); saveState(); }}>-</button>
-          <span>{localAdults}</span>
-          <button type="button" onClick={() => { setLocalAdults(localAdults + 1); saveState(); }}>+</button>
-        </div>
+        <button type="button" onClick={() => dispath(setAdults(Math.max(1, booking.adults - 1)))}>-</button>
+        <span>{booking.adults}</span>
+        <button type="button" onClick={() => dispath(setAdults(booking.adults + 1))}>+</button>
       </div>
 
-      <div>
+      <div className="guests-row">
         <span>Дети</span>
-        <div>
-          <button type="button" onClick={() => { setLocalChildren(Math.max(0, localChildren - 1)); saveState(); }}>-</button>
-          <span>{localChildren}</span>
-          <button type="button" onClick={() => { setLocalChildren(localChildren + 1); saveState(); }}>+</button>
-        </div>
+        <button type="button" onClick={() => dispath(setChildren(Math.max(0, booking.children - 1)))}>-</button>
+        <span>{booking.children}</span>
+        <button type="button" onClick={() => dispath(setChildren(booking.children + 1))}>+</button>
       </div>
 
-      <div>
+      <div className="guests-row">
         <span>Номера</span>
-        <div>
-          <button type="button" onClick={() => { setLocalRooms(Math.max(1, localRooms - 1)); saveState(); }}>-</button>
-          <span>{localRooms}</span>
-          <button type="button" onClick={() => { setLocalRooms(localRooms + 1); saveState(); }}>+</button>
-        </div>
+        <button type="button" onClick={() => dispath(setRooms(Math.max(1, booking.rooms - 1)))}>-</button>
+        <span>{booking.rooms}</span>
+        <button type="button" onClick={() => dispath(setRooms(booking.rooms + 1))}>+</button>
       </div>
     </div>
   );
 });
 
-GuestsPopover.displayName = "GuestsPopover";
+GuestsPopover.displayName = 'GuestsPopover';
 export default GuestsPopover;
