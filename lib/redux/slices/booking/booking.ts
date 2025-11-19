@@ -1,45 +1,47 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export type NullableDate = string | null;
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface BookingState {
-  checkIn: NullableDate;
-  checkOut: NullableDate;
-  adults: number;
-  children: number;
-  rooms: number;
+    checkIn: string | null;
+    checkOut: string | null;
+    adults: number;
+    children: number;
+    rooms: number;
 }
 
 const initialState: BookingState = {
-  checkIn: null,
-  checkOut: null,
-  adults: 2,
-  children: 0,
-  rooms: 1,
+    checkIn: null,
+    checkOut: null,
+    adults: 2,
+    children: 0,
+    rooms: 1,
 };
 
 const bookingSlice = createSlice({
-  name: "booking",
-  initialState,
-  reducers: {
-    setDates(state, action: PayloadAction<{ checkIn: NullableDate; checkOut: NullableDate }>) {
-      state.checkIn = action.payload.checkIn;
-      state.checkOut = action.payload.checkOut;
+    name: 'booking',
+    initialState,
+    reducers: {
+        setDates(state, action: PayloadAction<{ checkIn: string; checkOut: string }>) {
+            state.checkIn = action.payload.checkIn;
+            state.checkOut = action.payload.checkOut;
+        },
+        setAdults(state, action: PayloadAction<number>) {
+            state.adults = action.payload;
+        },
+        setChildren(state, action: PayloadAction<number>) {
+            state.children = action.payload;
+        },
+        setRooms(state, action: PayloadAction<number>) {
+            state.rooms = action.payload;
+        },
+        resetBooking(state) {
+            state.checkIn = null;
+            state.checkOut = null;
+            state.adults = 2;
+            state.children = 0;
+            state.rooms = 1;
+        }
     },
-    setGuests(state, action: PayloadAction<{ adults: number; children: number; rooms: number }>) {
-      state.adults = action.payload.adults;
-      state.children = action.payload.children;
-      state.rooms = action.payload.rooms;
-    },
-    resetBooking(state) {
-      state.checkIn = null;
-      state.checkOut = null;
-      state.adults = 2;
-      state.children = 0;
-      state.rooms = 1;
-    },
-  },
 });
 
-export const { setDates, setGuests, resetBooking } = bookingSlice.actions;
+export const { setDates, setAdults, setChildren, setRooms, resetBooking } = bookingSlice.actions;
 export default bookingSlice.reducer;
