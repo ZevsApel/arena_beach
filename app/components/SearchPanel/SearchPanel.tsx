@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/slice";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import useOutsideClick from "@/hooks/useOutsideClick";
 import { resetBooking } from "@/lib/redux/slices/booking/booking";
