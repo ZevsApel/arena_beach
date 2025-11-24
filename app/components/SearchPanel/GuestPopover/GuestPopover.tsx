@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { RootState } from "@/lib/redux/slice";
 import { setAdults, setChildren, setRooms } from "@/lib/redux/slices/booking/booking";
