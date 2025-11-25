@@ -56,14 +56,16 @@
     position: absolute;
 
     width: 100%;
-    max-width: 76.25rem;
 
+    top: 0;
     left: 0;
+    right: 0;
     bottom: 0;
 
-    padding: 1rem 1.5rem;
+    background-color: rgba(74, 83, 95, .4);
 
-    border-radius: .31rem;
-
-    background-color: var(--main-white);
+    display: grid;
+    place-items: center;
+    place-content: center;
 }
+
