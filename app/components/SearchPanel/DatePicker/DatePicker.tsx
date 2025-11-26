@@ -43,16 +43,16 @@ const DatePicker: React.FC<Props> = ({ initialMonth }) => {
     booking.checkOut ? new Date(booking.checkOut) : null
   );
 
-  // левый отображаемый месяц
-  const [currentMonth, setCurrentMonth] = useState<Date>(
-    initialMonth ? normalize(initialMonth) : today
-  );
+ 
+  const startMonth = initialMonth ? normalize(initialMonth) : today;
 
-  // второй месяц — следующий за currentMonth
-  const monthsToRender = [
-    currentMonth,
-    new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1),
-  ];
+  const months: Date[] = [];
+  let pointer = new Date(startMonth);
+
+  while (pointer <= maxDate) {
+    months.push(new Date(pointer)); // копия даты
+    pointer = new Date(pointer.getFullYear(), pointer.getMonth() + 1, 1);
+  }
 
   const getDaysMatrix = (year: number, month: number) => {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -61,7 +61,9 @@ const DatePicker: React.FC<Props> = ({ initialMonth }) => {
     const cells: (number | null)[] = [];
 
     for (let i = 1; i < firstDay; i++) cells.push(null);
+
     for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+
     while (cells.length % 7 !== 0) cells.push(null);
 
     const rows: (number | null)[][] = [];
@@ -96,6 +98,7 @@ const DatePicker: React.FC<Props> = ({ initialMonth }) => {
     }
 
     setLocalEnd(picked);
+
     if (localStart) {
       dispatch(
         setDates({
@@ -106,69 +109,50 @@ const DatePicker: React.FC<Props> = ({ initialMonth }) => {
     }
   };
 
-  const prevMonth = () => {
-    const newDate = new Date(currentMonth);
-    newDate.setMonth(newDate.getMonth() - 1);
-
-    const limit = new Date(today.getFullYear(), today.getMonth(), 1);
-    if (newDate < limit) return;
-
-    setCurrentMonth(newDate);
-  };
-
-  const nextMonth = () => {
-    const newDate = new Date(currentMonth);
-    newDate.setMonth(newDate.getMonth() + 1);
-
-    const limit = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
-    if (newDate > limit) return;
-
-    setCurrentMonth(newDate);
-  };
-
   return (
     <div className="date-picker-container">
       <p className="date-picker-title">Дата поездки</p>
 
-      <div className="month-nav">
-        <button onClick={prevMonth}>‹ Пред</button>
-        <button onClick={nextMonth}>След ›</button>
-      </div>
+      
+      <table className="weekday-header">
+        <thead>
+          <tr>
+            <div className="days-names">
+              {daysOfWeek.map((d) => (
+                <th key={d} className="day-name">{d}</th>
+              ))}
+            </div>
+          </tr>
+        </thead>
+      </table>
 
-      <div className="months-wrapper">
-        {monthsToRender.map((dateObj, index) => {
+      
+      <div className="months-wrapper-vertical">
+        {months.map((dateObj, index) => {
           const year = dateObj.getFullYear();
           const month = dateObj.getMonth();
           const daysMatrix = getDaysMatrix(year, month);
 
           return (
-            <div key={index}>
+            <div className="month-block" key={index}>
               <div className="current-month">
                 {monthNames[month]} {year}
               </div>
 
               <table>
-                <thead>
-                  <tr>
-                    {daysOfWeek.map((d) => (
-                      <th key={d}>{d}</th>
-                    ))}
-                  </tr>
-                </thead>
-
                 <tbody className="data-numbers">
                   {daysMatrix.map((row, ri) => (
-                    <tr key={ri}>
+                    <tr key={ri} className="data-raw">
                       {row.map((day, ci) => {
                         if (!day) return <td key={ci}></td>;
 
                         const date = normalize(new Date(year, month, day));
                         const selectable = isSelectable(date);
                         const inRange = isInRange(date);
-                        const isToday = date.getTime() === today.getTime(); // ← NEW
+                        const isToday = date.getTime() === today.getTime();
 
                         return (
-                          <td key={ci}>
+                          <td key={ci} className="month-day">
                             <div
                               onClick={() =>
                                 selectable ? clickDay(year, month, day) : null
