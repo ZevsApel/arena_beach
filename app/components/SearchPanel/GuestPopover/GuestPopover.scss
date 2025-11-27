@@ -1,0 +1,60 @@
+.guests-popover-container {
+    padding: 1.5rem;
+
+    border-top: 1px solid var(--text-unnoticed);
+    border-bottom: 1px solid var(--text-unnoticed);
+
+    height: 29.375rem;
+
+    overflow-y: auto;
+}
+
+.guests-popover-title-container {
+    padding-inline: 1.5rem;
+}
+
+
+.guests-popover-title {
+    color: var(--text-accent);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 110%;
+
+    margin: auto {
+        bottom: 1rem;
+    }
+}
+
+.room-title-row {
+    margin-bottom: 1.41rem;   
+}
+
+.guests-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: .75rem;
+}
+
+.guests-name-block {
+    display: grid;
+}
+
+.guests-name {
+    color: var(--text-dark);
+    font-size: 1.125rem;
+    font-weight: 500;
+
+    &-note {
+        color: var(--Text-Faceless, #9C9C9D);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+}
+
+.guests-change {
+    display: flex;
+    align-items: center;
+    gap: 1.37rem;
+}

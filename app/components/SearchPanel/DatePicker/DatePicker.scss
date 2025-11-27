@@ -1,14 +1,12 @@
 .date-picker-container {
-    background-color: var(--main-white);
-
-    padding: 1.5rem 0;
-    
     display: grid;
     gap: 0.625rem;
 
     min-width: 27.5rem;
 
-    border-radius: 0.5rem;
+    border-bottom: 1px solid var(--text-unnoticed);
+
+    padding-bottom: 1.125rem;
 }
 
 .months-wrapper-vertical {
@@ -43,7 +41,7 @@
     width: 100%;
 
     margin: auto {
-        bottom: 2rem;
+        bottom: 1rem;
     }
 }
 
@@ -61,7 +59,7 @@ thead {
     color: var(--text-faceless);
     text-transform: uppercase;
 
-    border-bottom:  1px solid var(--text-faceless);
+    border-bottom:  1px solid var(--text-unnoticed);
 
     width: 100%;
 
@@ -104,6 +102,10 @@ thead {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+
+    td {
+        width: 2.5rem;
+    }
 }
 
 .month-day,
