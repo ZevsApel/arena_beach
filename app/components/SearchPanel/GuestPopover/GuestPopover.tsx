@@ -25,7 +25,7 @@ const GuestsPopover = forwardRef((_, ref) => {
         {booking.rooms.map((room, i) => (
             <div key={i} className="room-block">
               <div className="room-title-row">
-                <span className="guests-popover-title">Номер {i + 1}</span>
+                <span className="guests-popover-title number-name">Номер {i + 1}</span>
 
                 {booking.rooms.length > 1 && (
                   <button
