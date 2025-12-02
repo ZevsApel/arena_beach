@@ -7,6 +7,16 @@
     height: 29.375rem;
 
     overflow-y: auto;
+
+    display: grid;
+    gap: 2rem;
+
+    &::-webkit-scrollbar {
+        width: .5rem;
+        height: 3.75rem;
+        
+        background-color: transparent;
+    }
 }
 
 .guests-popover-title-container {
@@ -26,7 +36,15 @@
 }
 
 .room-title-row {
-    margin-bottom: 1.41rem;   
+    margin-bottom: 1rem;  
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.number-name {
+    margin: 0;
 }
 
 .guests-row {
@@ -57,4 +75,28 @@
     display: flex;
     align-items: center;
     gap: 1.37rem;
+}
+
+.add-room-btn {
+    background-color: var(--main-secondary);
+    border-radius: .25rem;
+
+    width: 100%;
+
+    padding: .75rem 1rem;
+
+    font-size: 1.125rem;
+    color: var(--text-custom);
+    font-weight: 500;
+}
+
+.remove-room-btn {
+    color: var(--main-white);
+    font-weight: 500;
+
+    padding: .2rem .8rem;
+
+    border-radius: .25rem;
+
+    background-color: var(--main-accent);
 }
