@@ -11,17 +11,20 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@mattkrick/sanitize-svg": "^0.4.1",
     "@prisma/client": "^6.18.0",
     "@reduxjs/toolkit": "^2.8.2",
     "bcryptjs": "^3.0.2",
     "cookie": "^1.0.2",
     "jsonwebtoken": "^9.0.2",
     "next": "^15.4.2-canary.18",
+    "ra-data-simple-rest": "^5.13.3",
+    "ra-language-russian": "^5.4.4",
     "react": "19.1.0",
+    "react-admin": "^5.13.3",
     "react-dom": "19.1.0",
     "react-redux": "^9.2.0",
-    "sharp": "^0.34.4",
+    "sanitize-html": "^2.17.0",
+    "sharp": "^0.34.5",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -30,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19",
+    "@types/sanitize-html": "^2.16.0",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
